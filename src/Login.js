@@ -1,6 +1,18 @@
+import { useContext, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet,TextInput } from "react-native";
+import { UserContext } from "./Context/UserContext";
 
 export default function Login({navigate}){
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [erro, setErro] = useState(false);
+
+    const {Login} = useContext( UserContext );
+
+    function realizaLogin(){
+      Login( email, senha );
+      
+    }
     return(
         <View style={css.Todo}>
         <View style={css.titulo}></View>
@@ -9,8 +21,8 @@ export default function Login({navigate}){
                 </View>
             <Text>Connectez-vous à votre compte</Text>
 
-            <TextInput placeholder='Email' style={css.campo}></TextInput>
-            <TextInput placeholder='Senha' style={css.campo}></TextInput>
+            <TextInput placeholder='Email' style={css.campo} onChangeText={(digitado) => setEmail(digitado)} value={email}></TextInput>
+            <TextInput placeholder='Senha' style={css.campo} onChangeText={(digitado) => setSenha(digitado)} value={senha}></TextInput>
 
             <Text>Ou</Text>
 
@@ -18,7 +30,7 @@ export default function Login({navigate}){
             <Text style={css.Face}>Entrar com Facebook</Text>
             <Text style={css.Insta}>Entrar com Instagram</Text>
 
-            <TouchableOpacity style={css.Botao}>
+            <TouchableOpacity style={css.Botao} onPress={realizaLogin}>
                 <Text style={css.btntexto}>Entrar</Text>
             </TouchableOpacity>
         </View>
