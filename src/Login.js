@@ -15,12 +15,12 @@ export default function Login({navigate}){
     }
     return(
         <View style={css.Todo}>
-        <View style={css.titulo}></View>
-        <View style={css.linha}>
+        <View style={css.titulo}>
+            <View style={css.linha}>
                     <Text style={css.tituloPT}>Entrar em sua conta</Text>
                 </View>
-            <Text>Connectez-vous à votre compte</Text>
-
+            <Text style={css.tituloFR}>Connectez-vous à votre compte</Text>
+            </View>
             <TextInput placeholder='Email' style={css.campo} onChangeText={(digitado) => setEmail(digitado)} value={email}></TextInput>
             <TextInput placeholder='Senha' style={css.campo} onChangeText={(digitado) => setSenha(digitado)} value={senha}></TextInput>
 
@@ -49,8 +49,8 @@ const css = StyleSheet.create({
     },
     Botao: {
         backgroundColor: "rgba(140, 0, 0, 1)",
-        width: "80%",
-        height: "8%",
+        height: 50,
+        width: 300,
         display:"flex",
         alignItems:"center",
         margin: "3%",
@@ -58,47 +58,60 @@ const css = StyleSheet.create({
     }, 
     btntexto:{
         color: "white",
-        fontSize: 20
+        fontSize: 23
     },
     campo:{
         fontSize: 20,
         backgroundColor: '#fff',
         margin: "3%",
-        height: "8%",
-        width: "80%",
+        height: 50,
+        width: 300,
         borderRadius: 10
     },
-    tituloPT:{
+    tituloPT: {
         fontSize: 20,
+        textAlign: 'center',
+        
+    },
+    tituloFR: {
+        fontSize: 15,
+        textAlign: 'center',
     },
     linha: {
         borderBottomWidth: 1,
         borderBottomColor: "#000",
         textAlign: 'center',
     },
+    titulo: {
+        width: '70%',
+        margin: 15,
+    },
 
     Google: {
         backgroundColor: "rgba(111, 165, 255, 1)",
         color:"white",
-        height: "8%",
-        width: "80%",
+        height: 50,
+        width: 300,
         borderRadius: 10,
         margin: 5,
+        fontSize: 23
     },
     Face: {
         backgroundColor: "rgba(53, 136, 243, 1)",
         color: "white",
-        height: "8%",
-        width: "80%",
+        height: 50,
+        width: 300,
         borderRadius: 10,
-        margin: 5
+        margin: 5,
+        fontSize: 23
     },
     Insta: {
         backgroundColor: "rgba(0, 81, 185, 1)",
         color: "white",
-        height: "8%",
-        width: "80%",
+        height: 50,
+        width: 300,
         borderRadius: 10,
-        margin: 5
+        margin: 5,
+        fontSize: 23
     }
 })

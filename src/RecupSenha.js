@@ -33,8 +33,8 @@ const css = StyleSheet.create({
     },
     Botao: {
         backgroundColor: "rgba(140, 0, 0, 1)",
-        width: "80%",
-        height: "8%",
+        height: 50,
+        width: 300,
         display:"flex",
         alignItems:"center",
         margin: "3%",
@@ -57,8 +57,8 @@ const css = StyleSheet.create({
         fontSize: 20,
         backgroundColor: '#fff',
         margin: "3%",
-        height: "8%",
-        width: "80%",
+        height: 50,
+        width: 300,
         borderRadius: 10
 
     },

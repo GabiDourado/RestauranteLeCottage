@@ -10,7 +10,8 @@ export default function Agradecimento({navigation})
                     <Text style={css.tituloPT}>Pedido Finalizado com sucesso!</Text>
                 </View>
             <Text style={css.AgradecimentoFR}>Commande terminée avec succès</Text>
-            <Image source={{url: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fcorrect_4436481&psig=AOvVaw13jUVcXU1byA_f9EAUbia-&ust=1711560122395000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNCPhdK4koUDFQAAAAAdAAAAABAE'}}></Image>
+            <Image source={{url: 'https://cdn-icons-png.flaticon.com/512/4436/4436481.png'}}></Image>
+            
             <TouchableOpacity style={css.BotaoVoltar}>
                 <Text style={css.btntexto}>Voltar para pagina inicial</Text>
             </TouchableOpacity>
@@ -46,8 +47,8 @@ const css = StyleSheet.create({
 
     BotaoVoltar: {
         backgroundColor: "rgba(140, 0, 0, 1)",
-        width: "80%",
-        height: "8%",
+        height: 50,
+        width: 300,
         display:"flex",
         alignItems:"center",
         margin: "3%",
