@@ -84,7 +84,7 @@ export default function Cardapio () {
                 </View>
                 <Text style={css.tituloFR}>Principal</Text>
             </View>
-            <View style={css.scroll}>
+            <SafeAreaView style={css.scroll}>
                     <FlatList 
                     data={dados}
                     renderItem={({item}) => <Pratos
@@ -93,9 +93,9 @@ export default function Cardapio () {
                                                 foto={item.foto}
                                                 />}
                     keyExtractor={item => item.id}
-                    contentContainerStyle={css.container}
+                    contentContainerStyle={css.lista}
                     />
-            </View>
+            </SafeAreaView>
         </View>
     );
 }

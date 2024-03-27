@@ -1,21 +1,30 @@
+import { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export default function ItemPedido({foto, nome, preco}){
+    const [ numero, setNumero ] = useState(0);
+
+    function AumentaPedido(){
+        setNumero(numero + 1)
+    }
+    function DimnuiPedido(){
+        setNumero(numero - 1)
+    }
     return(
-        <View>
-            <Image style={css.teste} source={{uri: foto,}}></Image>
-            <Text>{nome}</Text>
-            <Text>{preco}</Text>    
-            <TouchableOpacity>
-                <Text>Qntde: </Text>
+        <View style={css.caixa}>
+            <Image style={css.img} source={{uri: foto,}}></Image>
+            <Text style={css.titulo}>{nome}</Text>
+            <Text style={css.preco}>{preco}</Text>    
+            <TouchableOpacity style={css.btn} onPress={AumentaPedido}>
+                <Text style={css.textoBtn}>Qntde: {numero} </Text>
             </TouchableOpacity>
         </View>
     );
 }
 
 const css = StyleSheet.create({
-    teste: {
+    img: {
         width: 100,
         height: 100
-    }
+    },
 });
