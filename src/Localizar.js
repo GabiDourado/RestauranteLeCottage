@@ -18,6 +18,7 @@ export default function Localizar() {
 
     <View style={css.parteBaixo}>
     
+    <View style={css.FulaECOM}>
     <View style={css.Flanoo}>
     <Image style={css.person} source={{uri: 'https://cdn-icons-png.freepik.com/256/1077/1077114.png',}}></Image>
       <Text style={css.fulaninho}>Fulaninho</Text>
@@ -26,9 +27,22 @@ export default function Localizar() {
       <Text style={css.total}>Total: </Text>
       <Text style={css.valor}>R$38,00</Text>
 
+      </View>
+
+    <View style={css.DINDIN}> 
+    <Image style={css.lupa} source={{uri:'https://cdn-icons-png.freepik.com/512/10074/10074041.png',}}></Image>
       <Text style={css.dindin}>Pagar por dinheiro</Text>
+      </View>
+      
+      <View style={css.PIX}>
+      <Image style={css.lupa} source={{uri:'https://user-images.githubusercontent.com/741969/99538133-492fe280-298b-11eb-81a2-66779343e064.png',}}></Image>
       <Text style={css.pix}>Pagar via Pix</Text>
+      </View>
+      
+      <View style={css.CART}>
+      <Image style={css.lupa} source={{uri:'https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png',}}></Image>
       <Text style={css.cartao}>Pagar via cartão</Text>
+      </View>
 
       </View>
       
@@ -70,19 +84,28 @@ const css = StyleSheet.create({
     },
     valor: {
         color: "rgba(64, 137, 80, 1)",
+        fontSize: 18
         
 
+    },
+
+    FulaECOM:{
+        display:"flex",
+        flexDirection:"row",
     },
 
     CampPesqui:{
         backgroundColor: "white",
         height:46,
         width:300,
+        display:"flex",
+        flexDirection:"row",
         
     },
     lupa: {
-        height:50,
-        width:50
+        height:40,
+        width:40,
+        marginLeft: 40
     },
     
     TxtPesqui:{
@@ -93,23 +116,37 @@ const css = StyleSheet.create({
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
         height: 40,
-        width: 300,
+        width: 200,
         fontSize: 20
     },
+    DINDIN:{
+        display:"flex",
+        flexDirection:"row",
+    
+    },
+    
     pix: {
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
         height: 40,
-        width: 300,
+        width: 200,
         fontSize: 20
         
+    },
+    PIX: {
+        display:"flex",
+        flexDirection:"row",
     },
     cartao: {
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
         height: 40,
-        width: 300,
+        width: 200,
         fontSize: 20
+    },
+    CART:{
+        display:"flex",
+        flexDirection:"row",
     },
     fulaninho: {
         fontSize: 20,
@@ -122,17 +159,18 @@ const css = StyleSheet.create({
     },
     Flanoo:{
         display:"flex",
-        flexDirection:"row"
+        flexDirection:"row",
+       
     },
     total: {
-        
+        fontSize: 18
     },
     parteBaixo: {
         backgroundColor: "white",
         width: 390
     },
     mapa:{
-        width: 300,
+        width: 330,
         height:260
     },
     
