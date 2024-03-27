@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet,TextInput } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet,TextInput } from "react-native";
 import { UserContext } from "./Context/UserContext";
 
 export default function Login({navigate}){
@@ -25,11 +25,18 @@ export default function Login({navigate}){
             <TextInput placeholder='Senha' style={css.campo} onChangeText={(digitado) => setSenha(digitado)} value={senha}></TextInput>
 
             <Text>Ou</Text>
-
-            <Text style={css.Google}>Entrar com Google</Text>
-            <Text style={css.Face}>Entrar com Facebook</Text>
-            <Text style={css.Insta}>Entrar com Instagram</Text>
-
+            <View style={css.Google}>
+                <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/480px-Facebook_f_logo_%282019%29.svg.png",}}/>
+                <Text style={css.letra}>Entrar com Google</Text>
+            </View>
+            <View style={css.Face}>
+                <Image style={css.conta} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png',}} />
+                <Text style={css.letra} >Entrar com Facebook</Text>
+            </View>
+            <View style={css.Insta}>
+                <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/768px-Instagram_icon.png",}}/>
+                <Text style={css.letra}>Entrar com Instagram</Text>
+            </View>
             <TouchableOpacity style={css.Botao} onPress={realizaLogin}>
                 <Text style={css.btntexto}>Entrar</Text>
             </TouchableOpacity>
@@ -113,5 +120,10 @@ const css = StyleSheet.create({
         borderRadius: 10,
         margin: 5,
         fontSize: 23
+    },
+    letra: {
+        fontSize: 22,
+        color: "#fff",
+        
     }
 })
