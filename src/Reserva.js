@@ -1,10 +1,10 @@
-import { Text, TouchableOpacity, View, TextInput } from "react-native";
+import { Text, TouchableOpacity, View, TextInput, StyleSheet } from "react-native";
 import Calendario from "./Calendario";
 
 
 export default function Reserva () {
     return(
-        <View>
+        <View style={css.Todo}>
             <Text>Faça sua reserva</Text>
             <Text>Faites votre réservation</Text>
             <Text>Data</Text>
@@ -20,4 +20,18 @@ export default function Reserva () {
         </View>
     );
 }
+
+const css = StyleSheet.create({
+    Todo: {
+        backgroundColor: "rgba(250, 224, 226, 1)",
+       width: "100%",
+       height: "100%",
+       flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+
+
+
+})
  //<Calendario></Calendario>
