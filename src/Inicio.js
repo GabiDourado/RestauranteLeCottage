@@ -1,6 +1,9 @@
 import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import Queridinhos from './Queridinhos'
 import { TouchableOpacity } from "react-native";
+import { useContext } from "react";
+import UserContext from './Context/UserContext'
+import Cardapio from './Cardapio'
 
 export default function Inicio ({navigation}){
     const dados = [
@@ -26,7 +29,7 @@ export default function Inicio ({navigation}){
                 <Text style={css.tituloFR}>Que veux-tu aujourd'hui ?</Text>
             </View>
             <View style={css.botoes}>
-                <TouchableOpacity style={css.btn} /*onPress={ () => navigation.navigate( "Cardapio" ) }*/>
+                <TouchableOpacity style={css.btn} /*onPress={ () => setCardapio(true) }*/>
                     <Text style={css.btnTexto}>Cardápio</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={css.btn} /*onPress={ () => navigation.navigate( "Pedido" ) }*/>
