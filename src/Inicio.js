@@ -7,6 +7,8 @@ import Cardapio from './Cardapio'
 import Cadastro from "./Cadastro";
 
 export default function Inicio ({navigation}){
+    
+    
     const dados = [
         {
             id: "01",
