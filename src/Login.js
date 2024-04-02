@@ -23,22 +23,38 @@ export default function Login({navigate}){
             </View>
             <TextInput placeholder='Email' style={css.campo} onChangeText={(digitado) => setEmail(digitado)} value={email}></TextInput>
             <TextInput placeholder='Senha' style={css.campo} onChangeText={(digitado) => setSenha(digitado)} value={senha}></TextInput>
-
-            <Text>Ou</Text>
-            <View style={css.Google}>
-                <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/480px-Facebook_f_logo_%282019%29.svg.png",}}/>
-                <Text style={css.letra}>Entrar com Google</Text>
-            </View>
-            <View style={css.Face}>
-                <Image style={css.conta} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png',}} />
-                <Text style={css.letra} >Entrar com Facebook</Text>
-            </View>
-            <View style={css.Insta}>
-                <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/768px-Instagram_icon.png",}}/>
-                <Text style={css.letra}>Entrar com Instagram</Text>
-            </View>
             <TouchableOpacity style={css.Botao} onPress={realizaLogin}>
                 <Text style={css.btntexto}>Entrar</Text>
+            </TouchableOpacity>
+            <View style={css.esqueci}>
+                <TouchableOpacity>
+                    <Text style={css.link}>Esqueci minha senha</Text>
+                </TouchableOpacity>
+                <View style={css.cadastre}>
+                    <Text style={css.letra2}>Não tem uma conta?</Text>
+                    <TouchableOpacity>
+                        <Text style={css.link}>Cadastre-se</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <Text style={css.ou}>Ou</Text>
+            <TouchableOpacity style={css.Google}>
+                <View style={css.caixabranca}>
+                    <Image style={css.conta} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png',}} />
+                </View>
+                <Text style={css.letra}>Entrar com Google</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={css.Face}>
+                <View style={css.caixabranca}>
+                    <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/480px-Facebook_f_logo_%282019%29.svg.png",}}/>
+                </View>
+                <Text style={css.letra} >Entrar com Facebook</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={css.Insta}>
+                <View style={css.caixabranca}>
+                    <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/768px-Instagram_icon.png",}}/>
+                </View>
+                    <Text style={css.letra}>Entrar com Instagram</Text>
             </TouchableOpacity>
         </View>
     )
@@ -47,19 +63,21 @@ export default function Login({navigate}){
 const css = StyleSheet.create({
     Todo:{
         backgroundColor: "rgba(250, 224, 226, 1)",
-       width: "100%",
-       height: "100%",
-       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
+        width: "100%",
+        height: "100%",
+        flex: 1,
+        alignItems: 'center',
+        justifyContent:'center'
+
        
     },
     Botao: {
         backgroundColor: "rgba(140, 0, 0, 1)",
         height: 50,
-        width: 300,
+        width: '85%',
         display:"flex",
         alignItems:"center",
+        justifyContent: 'center',
         margin: "3%",
         borderRadius: 10
     }, 
@@ -67,13 +85,18 @@ const css = StyleSheet.create({
         color: "white",
         fontSize: 23
     },
+    ou:{
+        fontSize: 22,
+        margin: 20
+    },
     campo:{
         fontSize: 20,
         backgroundColor: '#fff',
         margin: "3%",
         height: 50,
-        width: 300,
-        borderRadius: 10
+        width: '85%',
+        borderRadius: 10,
+        padding: 10
     },
     tituloPT: {
         fontSize: 20,
@@ -91,39 +114,81 @@ const css = StyleSheet.create({
     },
     titulo: {
         width: '70%',
-        margin: 15,
+        margin: 20,
     },
 
     Google: {
         backgroundColor: "rgba(111, 165, 255, 1)",
+        display: "flex",
         color:"white",
-        height: 50,
-        width: 300,
+        height: 60,
+        width: '85%',
         borderRadius: 10,
         margin: 5,
-        fontSize: 23
+        fontSize: 23,
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
     Face: {
         backgroundColor: "rgba(53, 136, 243, 1)",
         color: "white",
-        height: 50,
-        width: 300,
+        height: 60,
+        width: '85%',
         borderRadius: 10,
         margin: 5,
-        fontSize: 23
+        fontSize: 23,
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
     Insta: {
         backgroundColor: "rgba(0, 81, 185, 1)",
         color: "white",
-        height: 50,
-        width: 300,
+        height: 60,
+        width: '85%',
         borderRadius: 10,
         margin: 5,
-        fontSize: 23
+        fontSize: 23,
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'row'
     },
     letra: {
         fontSize: 22,
         color: "#fff",
-        
+        marginLeft: '10%'
+    },
+    conta: {
+        width: "75%",
+        height: "75%"
+    },
+    caixabranca: {
+        width: "18%",
+        height: 61,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        display:'flex',
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    link:{
+        fontSize: 17,
+        color: 'rgba(111, 165, 255, 1)'
+    },
+    letra2:{
+        fontSize: 17,
+        marginRight: 8,
+    },
+    cadastre:{
+        display:'flex',
+        flexDirection:'row',
+        marginTop: 10
+    },
+    esqueci: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10
     }
 })
