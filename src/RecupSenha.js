@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet} from "react-native";
+import { UserContext } from "./Context/UserContext";
 
-export default function RecupSenha({navigation}){
+export default function RecupSenha(){
+    const{ setEsqueciSenha } = useContext ( UserContext );
     return(
         <View style={css.Todo}>
+        <TouchableOpacity style={css.volta}  onPress={() => setEsqueciSenha(false)}>
+            <Text>❮</Text>
+        </TouchableOpacity>
         <View style={css.titulo}>
             <View style={css.linha}>
                     <Text style={css.tituloPT}>Recuperar Senha</Text>
@@ -71,5 +77,12 @@ const css = StyleSheet.create({
         padding: 10
 
     },
+    volta:{
+        position:'absolute',
+        zIndex: 99,
+        top: 10,
+        left: 10,
+        fontSize: 30,
+    }
     
 })

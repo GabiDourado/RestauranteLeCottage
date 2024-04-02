@@ -1,12 +1,17 @@
+import { useContext } from "react";
 import { Text, View, TouchableOpacity, StyleSheet, TextInput, Image, SafeAreaView, ScrollView, StatusBar } from "react-native";
+import { UserContext } from "./Context/UserContext";
 
 
 
 export default function Cadastro({navigation})
 {
-    
+    const{ setCadastro } = useContext(  UserContext );
     return(
         <View style={css.Todo}>
+            <TouchableOpacity style={css.volta}  onPress={() => setCadastro(false)}>
+                <Text>❮</Text>
+            </TouchableOpacity>
             <View style={css.titulo}>
                 <View style={css.linha}>
                     <Text style={css.tituloPT}>Crie sua conta</Text>
@@ -14,15 +19,15 @@ export default function Cadastro({navigation})
                 <Text style={css.tituloFR}>Créez votre compte</Text>
             </View>
             <View style={css.entrarCom}>
-                <View style={css.caixaentrar}>
+                <TouchableOpacity style={css.caixaentrar}>
                     <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/480px-Facebook_f_logo_%282019%29.svg.png",}}/>
-                </View>
-                <View style={css.caixaentrar}>
+                </TouchableOpacity>
+                <TouchableOpacity style={css.caixaentrar}>
                     <Image style={css.conta} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png',}} />
-                </View>
-                <View style={css.caixaentrar}>
+                </TouchableOpacity>
+                <TouchableOpacity style={css.caixaentrar}>
                     <Image style={css.conta} source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/768px-Instagram_icon.png",}}/>
-                </View>
+                </TouchableOpacity>
             </View>
             <Text style={css.ou}>Ou</Text>
             <View>
@@ -136,5 +141,12 @@ const css = StyleSheet.create({
     concordo:{
         fontSize: 16,
         width: '68%',
+    },
+    volta:{
+        position:'absolute',
+        zIndex: 99,
+        top: 10,
+        left: 10,
+        fontSize: 30,
     }
 })

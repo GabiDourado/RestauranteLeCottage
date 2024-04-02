@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet,TextInput } from "react-native";
 import { UserContext } from "./Context/UserContext";
+import Cadastro from "./Cadastro";
+import RecupSenha from "./RecupSenha";
 
 export default function Login({navigate}){
     const [email, setEmail] = useState("");
@@ -12,6 +14,16 @@ export default function Login({navigate}){
     function realizaLogin(){
       Login( email, senha );
       
+    }
+
+    const{ cadastro, setCadastro } = useContext(  UserContext );
+    const{ esqueciSenha, setEsqueciSenha } = useContext ( UserContext );
+
+    if( cadastro ) {
+        return( < Cadastro/> )
+    }
+    if( esqueciSenha ) {
+        return( < RecupSenha/> )
     }
     return(
         <View style={css.Todo}>
@@ -27,12 +39,12 @@ export default function Login({navigate}){
                 <Text style={css.btntexto}>Entrar</Text>
             </TouchableOpacity>
             <View style={css.esqueci}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => setEsqueciSenha(true)}>
                     <Text style={css.link}>Esqueci minha senha</Text>
                 </TouchableOpacity>
                 <View style={css.cadastre}>
                     <Text style={css.letra2}>Não tem uma conta?</Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => setCadastro(true)}>
                         <Text style={css.link}>Cadastre-se</Text>
                     </TouchableOpacity>
                 </View>

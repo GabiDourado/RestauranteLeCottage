@@ -89,7 +89,7 @@ export default function Cardapio () {
                     data={dados}
                     renderItem={({item}) => <Pratos
                                                 nome={item.nome}
-                                                preco={'R$ ' + item.preco}
+                                                preco={'R$ ' + (item.preco).toFixed(2).replace('.',',')}
                                                 foto={item.foto}
                                                 />}
                     keyExtractor={item => item.id}

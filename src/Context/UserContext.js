@@ -5,7 +5,8 @@ export const UserContext = createContext();
 function UserProvider({children}) {
     const [ usuario, setUsuario ]= useState(null);
     const [ logado, setLogado ]= useState(false);
-    const [ cardapio, setCardapio ] = useState(false)
+    const [ cadastro, setCadastro ] = useState(false);
+    const [ esqueciSenha, setEsqueciSenha] = useState(false);
 
     async function Login ( email, senha ){
         if(email == "gabi.dourado@mail.com" && senha == "12345" ){
@@ -27,7 +28,7 @@ function UserProvider({children}) {
         InfoUsuario()
     },[])
     return(
-        <UserContext.Provider value={{usuario : usuario, logado: logado, cardapio:cardapio, Login, InfoUsuario, setCardapio}}>
+        <UserContext.Provider value={{usuario : usuario, logado: logado, cadastro:cadastro, esqueciSenha: esqueciSenha, Login, InfoUsuario, setCadastro, setEsqueciSenha}}>
             {children}
         </UserContext.Provider>
     )

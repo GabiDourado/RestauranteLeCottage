@@ -2,8 +2,9 @@ import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import Queridinhos from './Queridinhos'
 import { TouchableOpacity } from "react-native";
 import { useContext } from "react";
-import UserContext from './Context/UserContext'
+import {UserContext} from './Context/UserContext'
 import Cardapio from './Cardapio'
+import Cadastro from "./Cadastro";
 
 export default function Inicio ({navigation}){
     const dados = [
@@ -20,6 +21,9 @@ export default function Inicio ({navigation}){
             preco: 38.00
         },
     ]
+
+    
+
     return(
         <View style={css.tudo}>
             <View style={css.titulo}>
