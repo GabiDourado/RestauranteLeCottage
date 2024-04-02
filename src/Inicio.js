@@ -8,6 +8,7 @@ import Cadastro from "./Cadastro";
 
 export default function Inicio ({navigation}){
     
+
     
     const dados = [
         {
