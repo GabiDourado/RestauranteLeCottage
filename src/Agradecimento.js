@@ -7,10 +7,15 @@ export default function Agradecimento({navigation})
         <View style={css.Todo}>
             <View style={css.titulo}></View>
             <View style={css.linha}>
+
+            <View style={css.icons}>
+                <Image style={css.conta} source={{uri: "https://cdn-icons-png.flaticon.com/512/4436/4436481.png",}}/>
+                <Image style={css.conta} source={{uri: "https://cdn-icons-png.flaticon.com/512/9561/9561688.png",}}/>
+            </View>
                     <Text style={css.tituloPT}>Pedido Finalizado com sucesso!</Text>
                 </View>
             <Text style={css.AgradecimentoFR}>Commande terminée avec succès</Text>
-            <Image source={{url: 'https://cdn-icons-png.flaticon.com/512/4436/4436481.png'}}></Image>
+            
             
             <TouchableOpacity style={css.BotaoVoltar}>
                 <Text style={css.btntexto}>Voltar para pagina inicial</Text>
@@ -52,7 +57,8 @@ const css = StyleSheet.create({
         display:"flex",
         alignItems:"center",
         margin: "3%",
-        borderRadius: 10
+        borderRadius: 10,
+        justifyContent:"center"
         
     },
     btntexto:{
@@ -68,6 +74,19 @@ const css = StyleSheet.create({
 
     tituloPT:{
         fontSize: 20
-    }
+    },
+   conta:{
+        height: 100,
+        width: 100,
+        borderRadius: 10,
+        margin: 5,
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center"
+   },
+   icons: {
+    flexDirection:"row",
+    marginLeft:30
+   }
 
 })

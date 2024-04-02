@@ -23,7 +23,7 @@ export default function Localizar() {
     <Image style={css.person} source={{uri: 'https://cdn-icons-png.freepik.com/256/1077/1077114.png',}}></Image>
       <Text style={css.fulaninho}>Fulaninho</Text>
       </View>
-      
+
       <Text style={css.total}>Total: </Text>
       <Text style={css.valor}>R$38,00</Text>
 
@@ -84,7 +84,8 @@ const css = StyleSheet.create({
     },
     valor: {
         color: "rgba(64, 137, 80, 1)",
-        fontSize: 18
+        fontSize: 18,
+        
         
 
     },
@@ -103,21 +104,26 @@ const css = StyleSheet.create({
         
     },
     lupa: {
-        height:40,
-        width:40,
-        marginLeft: 40
+        height:30,
+        width:30,
+        marginLeft: 50,
+        marginTop: 13,
     },
     
     TxtPesqui:{
-        fontSize: 22
+        fontSize: 22,
+        
+        
     },
     
     dindin: {
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
         height: 40,
-        width: 200,
-        fontSize: 20
+        width: 240,
+        fontSize: 20,
+        textAlign:"center"
+       
     },
     DINDIN:{
         display:"flex",
@@ -129,8 +135,10 @@ const css = StyleSheet.create({
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
         height: 40,
-        width: 200,
-        fontSize: 20
+        width: 240,
+        fontSize: 20,
+        textAlign:"center"
+        
         
     },
     PIX: {
@@ -141,8 +149,10 @@ const css = StyleSheet.create({
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
         height: 40,
-        width: 200,
-        fontSize: 20
+        width: 240,
+        fontSize: 20,
+        textAlign:"center"
+        
     },
     CART:{
         display:"flex",
@@ -163,7 +173,8 @@ const css = StyleSheet.create({
        
     },
     total: {
-        fontSize: 18
+        fontSize: 18,
+        marginLeft: 98
     },
     parteBaixo: {
         backgroundColor: "white",
@@ -171,7 +182,8 @@ const css = StyleSheet.create({
     },
     mapa:{
         width: 330,
-        height:260
+        height:260,
+       
     },
     
 
