@@ -15,6 +15,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useContext } from 'react';
 import { UserContext } from './Context/UserContext';
 import Localizar from './Localizar';
+import Perfil from './Perfil';
 
 const Tab = createBottomTabNavigator();
 
@@ -90,14 +91,15 @@ export default function Rotas() {
               <MaterialCommunityIcons name="ticket-confirmation-outline" color={color} size={size} />
             ),
           }} />
-          <Tab.Screen name="Agradecimento" component={Agradecimento} />
-          <Tab.Screen name="RecupSenha" component={RecupSenha} />
-          <Tab.Screen name="Cadastro" component={Cadastro} />
-          <Tab.Screen name="Localizar Pedido" component={Localizar} />
-
-
-          <Tab.Screen name="Login" component={Login} />
-      
+          <Tab.Screen 
+          name="Perfil" 
+          component={Perfil}
+          options={{
+            tabBarLabel: 'Perfil',
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="account" color={color} size={size} />
+            ),
+          }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -111,3 +113,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+/*<Tab.Screen name="Login" component={Login} />
+      <Tab.Screen name="Agradecimento" component={Agradecimento} />
+          <Tab.Screen name="RecupSenha" component={RecupSenha} />
+          <Tab.Screen name="Cadastro" component={Cadastro} />
+          <Tab.Screen name="Localizar Pedido" component={Localizar} />*/
