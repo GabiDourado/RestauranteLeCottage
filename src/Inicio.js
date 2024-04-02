@@ -25,8 +25,6 @@ export default function Inicio ({navigation}){
         },
     ]
 
-    
-
     return(
         <View style={css.tudo}>
             <View style={css.titulo}>
