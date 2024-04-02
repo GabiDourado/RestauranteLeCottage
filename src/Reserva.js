@@ -1,8 +1,8 @@
-import { Text, TouchableOpacity, View, TextInput, StyleSheet } from "react-native";
+import { Text, TouchableOpacity, View, TextInput, StyleSheet , Component} from "react-native";
 import CalendarPicker from "react-native-calendar-picker";
 
 
-export default function Reserva () {
+export default function Reserva(){
 
     return(
         <View style={css.Todo}>
