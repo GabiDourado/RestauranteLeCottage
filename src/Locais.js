@@ -1,15 +1,19 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView, StatusBar } from "react-native";
 
 export default function Locais () {
     return(
-        <View style={css.tudo}>
+       
+        
+            
+    <View style={css.tudo}>
             <View style={css.titulo}>
                     <View style={css.linha}>
                         <Text style={css.tituloPT}>Principais restaurantes</Text>
                     </View>
                     <Text style={css.tituloFR}>Principaux restaurants</Text>
             </View>
-            
+            <SafeAreaView style={css.SafaAre}>
+            <ScrollView style={css.Scroll}>
             <Image style={css.img} source={{uri: "https://img.odcdn.com.br/wp-content/uploads/2018/12/20181218065336.jpg",}}/>
             <View style={css.lugares}>
                 <View style={css.linha2}>
@@ -33,7 +37,11 @@ export default function Locais () {
                     <Image style={css.point} source={{uri: "https://cdn-icons-png.flaticon.com/512/7705/7705037.png",}}/>
                 </View>
             </View>
+            </ScrollView>
+        </SafeAreaView>
         </View>
+        
+       
     );
 }
 
@@ -95,4 +103,13 @@ const css = StyleSheet.create({
         flexDirection: 'row',
         padding: 10
     },
+    SafaAre:{
+        flex: 1,
+        backgroundColor: "#FAE0E2",
+        
+    },
+    Scroll:{
+        backgroundColor: "#FAE0E2",
+        width:'100%',
+    }
 });

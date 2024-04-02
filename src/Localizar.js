@@ -1,58 +1,50 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, } from 'react-native'
 import React from 'react'
 import { Directions } from 'react-native-gesture-handler'
 
 export default function Localizar() {
   return (
-    <View style={css.Todo}>
-
-        <View style={css.CampPesqui}>
-            <Text style={css.TxtPesqui}>Digite seu endereço</Text>
-            <Image style={css.lupa} source={{uri:'https://png.pngtree.com/png-clipart/20230401/original/pngtree-magnifying-glass-line-icon-png-image_9015864.png',}}></Image>
-        </View>
-
-      <Text>Ou</Text>
-      <Text>Utilizar endereço cadastrado</Text>
-
-      <Image  style={css.mapa} source={{uri:'https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1',}}></Image>
-
-    <View style={css.parteBaixo}>
     
-    <View style={css.FulaECOM}>
-    <View style={css.Flanoo}>
-    <Image style={css.person} source={{uri: 'https://cdn-icons-png.freepik.com/256/1077/1077114.png',}}></Image>
-      <Text style={css.fulaninho}>Fulaninho</Text>
-      </View>
 
-      <Text style={css.total}>Total: </Text>
-      <Text style={css.valor}>R$38,00</Text>
+        <View style={css.Todo}>
+            <View style={css.CampPesqui}>
+                <Text style={css.TxtPesqui}>Digite seu endereço</Text>
+                <Image style={css.lupa} source={{uri:'https://png.pngtree.com/png-clipart/20230401/original/pngtree-magnifying-glass-line-icon-png-image_9015864.png',}}></Image>
+            </View>
 
-      </View>
+            <Text>Ou</Text>
+            <Text>Utilizar endereço cadastrado</Text>
 
-    <View style={css.DINDIN}> 
-    <Image style={css.lupa} source={{uri:'https://cdn-icons-png.freepik.com/512/10074/10074041.png',}}></Image>
-      <Text style={css.dindin}>Pagar por dinheiro</Text>
-      </View>
-      
-      <View style={css.PIX}>
-      <Image style={css.lupa} source={{uri:'https://user-images.githubusercontent.com/741969/99538133-492fe280-298b-11eb-81a2-66779343e064.png',}}></Image>
-      <Text style={css.pix}>Pagar via Pix</Text>
-      </View>
-      
-      <View style={css.CART}>
-      <Image style={css.lupa} source={{uri:'https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png',}}></Image>
-      <Text style={css.cartao}>Pagar via cartão</Text>
-      </View>
+            <Image  style={css.mapa} source={{uri:'https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1',}}></Image>
 
-      </View>
-      
-      <TouchableOpacity style={css.Botao}>
+            <View style={css.parteBaixo}>
+                <View style={css.FulaECOM}>
+                    <View style={css.Flanoo}>
+                        <Image style={css.person} source={{uri: 'https://cdn-icons-png.freepik.com/256/1077/1077114.png',}}></Image>
+                        <Text style={css.fulaninho}>Fulaninho</Text>
+                    </View>
+                    <Text style={css.total}>Total: </Text>
+                    <Text style={css.valor}>R$38,00</Text>
+                </View>
+                <View style={css.DINDIN}> 
+                    <Image style={css.lupa} source={{uri:'https://cdn-icons-png.freepik.com/512/10074/10074041.png',}}></Image>
+                    <Text style={css.dindin}>Pagar por dinheiro</Text>
+                </View>
+                <View style={css.PIX}>
+                    <Image style={css.lupa} source={{uri:'https://user-images.githubusercontent.com/741969/99538133-492fe280-298b-11eb-81a2-66779343e064.png',}}></Image>
+                    <Text style={css.pix}>Pagar via Pix</Text>
+                </View>
+                <View style={css.CART}>
+                    <Image style={css.lupa} source={{uri:'https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png',}}></Image>
+                    <Text style={css.cartao}>Pagar via cartão</Text>
+                </View>
+            </View>
+            <TouchableOpacity style={css.Botao}>
                 <Text style={css.btntexto}>Finalizar Pedido</Text>
             </TouchableOpacity>
-
+        </View>
     
-
-    </View>
+    
   )
 }
 

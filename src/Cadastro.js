@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, StyleSheet, TextInput, Image } from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet, TextInput, Image, SafeAreaView, ScrollView, StatusBar } from "react-native";
 
 
 
