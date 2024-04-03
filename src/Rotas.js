@@ -18,6 +18,7 @@ import { UserContext } from './Context/UserContext';
 import Localizar from './Localizar';
 import Perfil from './Perfil';
 import * as Network from 'expo-network';
+import Camera from './Camera';
 
 const Tab = createBottomTabNavigator();
 
@@ -133,7 +134,9 @@ export default function Rotas() {
               <MaterialCommunityIcons name="account" color={color} size={size} />
             ),
           }} />
+          <Tab.Screen name="Camera" component={Camera} />
       </Tab.Navigator>
+      
       : <Tab.Navigator
       initialRouteName='Início'
       screenOptions={{
@@ -197,6 +200,7 @@ export default function Rotas() {
               <MaterialCommunityIcons name="account" color={color} size={size} />
             ),
           }} />
+          <Tab.Screen name="Camera" component={Camera} />
       </Tab.Navigator> }
     </NavigationContainer>
   );

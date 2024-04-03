@@ -1,12 +1,18 @@
 import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import Queridinhos from './Queridinhos'
 import * as Network from 'expo-network';
+import { useBatteryLevel } from 'expo-battery';
 import { TouchableOpacity } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import {UserContext} from './Context/UserContext'
 import Cardapio from './Cardapio'
 
 export default function Inicio ({navigation}){
+    
+    const [bateria, setBateria] = useState();
+
+    const batteryLevel = useBatteryLevel();
+    
     const dados = [
         {
             id: "01",
@@ -50,10 +56,15 @@ export default function Inicio ({navigation}){
     useEffect( () => {
         getStatus();
     },[rede, dadosMoveis]);
+    
+
+    useEffect( () => {
+        setBateria( (batteryLevel * 100).toFixed(0) );
+    }, [batteryLevel] );
+
 
     return(
         <View style={css.tudo}>
-             
             <View style={css.titulo}>
                 <View style={css.linha}>
                     <Text style={css.tituloPT}>O que você deseja hoje?</Text>
@@ -74,7 +85,7 @@ export default function Inicio ({navigation}){
                     <Text style={css.btnTexto}>Restaurantes</Text>
                 </TouchableOpacity>
             </View>
-            {rede ?
+            {rede && bateria > 15 ?
             <View style={css.tudo}>
                 <View style={css.titulo}>
                 <View style={css.linha}>
