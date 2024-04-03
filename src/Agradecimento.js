@@ -1,10 +1,20 @@
 import { Button, Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { UserContext } from "./Context/UserContext";
+import { useContext } from "react";
+import Pedido from "./Pedido";
 
 
 export default function Agradecimento({navigation})
-{
+{   
+    const{ pedido, setPedido } = useContext ( UserContext );
+    if (pedido){
+        return(<Pedido/>)
+    }
     return(
         <View style={css.Todo}>
+            <TouchableOpacity style={css.volta}  onPress={() => setLocaliza(false)}>
+                <Text style={css.voltaTxt}>❮</Text>
+            </TouchableOpacity>
             <View style={css.titulo}></View>
             <View style={css.linha}>
 
@@ -17,7 +27,7 @@ export default function Agradecimento({navigation})
             <Text style={css.AgradecimentoFR}>Commande terminée avec succès</Text>
             
             
-            <TouchableOpacity style={css.BotaoVoltar}>
+            <TouchableOpacity style={css.BotaoVoltar} onPress={() => setPedido(true)}>
                 <Text style={css.btntexto}>Voltar para pagina inicial</Text>
             </TouchableOpacity>
             
@@ -79,7 +89,7 @@ const css = StyleSheet.create({
         height: 100,
         width: 100,
         borderRadius: 10,
-        margin: 5,
+        margin: 15,
         display:"flex",
         alignItems:"center",
         justifyContent:"center"
@@ -87,6 +97,16 @@ const css = StyleSheet.create({
    icons: {
     flexDirection:"row",
     marginLeft:30
-   }
+   },
+   volta:{
+    position:'absolute',
+    zIndex: 99,
+    top: 10,
+    left: 15,
+        
+    },
+    voltaTxt: {
+        fontSize: 1,
+    }
 
 })

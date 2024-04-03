@@ -1,13 +1,17 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import ItemPedido from "./ItemPedido";
 import { useContext, useEffect, useState } from 'react';
+import { UserContext } from "./Context/UserContext";
 import PedidoAnterior from "./PedidoAnterior";
+import Localizar from "./Localizar";
 import * as Network from 'expo-network';
 
 export default function Pedido () {
     const [ semRede, setSemRede ] = useState( false );
     const [ dadosMoveis, setDadosMoveis ] = useState(false);
     const [ rede, setRede ] = useState(false);
+
+    const {localiza, setLocaliza} = useContext( UserContext );
 
     async function getStatus(){
         const status = await Network.getNetworkStateAsync();
@@ -33,6 +37,10 @@ export default function Pedido () {
     useEffect( () => {
         getStatus();
     },[rede, dadosMoveis]);
+
+    if (localiza){
+        return(<Localizar/>)
+    }
     return(
         <SafeAreaView style={css.container}>
             <ScrollView style={css.scroll}>
@@ -57,7 +65,7 @@ export default function Pedido () {
                             preco="R$ 38,00"></ItemPedido>
                         </View>
                     </View>
-                    <TouchableOpacity style={css.btn}>
+                    <TouchableOpacity style={css.btn} onPress={() => setLocaliza(true)}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
                     {rede?
@@ -164,4 +172,5 @@ const css = StyleSheet.create({
         display:'flex',
         alignItems:'center'
     },
+    
 })

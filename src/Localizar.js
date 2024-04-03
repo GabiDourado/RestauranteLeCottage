@@ -1,12 +1,21 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Directions } from 'react-native-gesture-handler'
+import { UserContext } from './Context/UserContext';
+import Agradecimento from './Agradecimento';
 
 export default function Localizar() {
+    const{ setLocaliza, agradece, setAgradece } = useContext ( UserContext );
+    if(agradece){
+        return(<Agradecimento/>)
+    }
   return (
     
 
         <View style={css.Todo}>
+            <TouchableOpacity style={css.volta}  onPress={() => setLocaliza(false)}>
+                <Text style={css.voltaTxt}>❮</Text>
+            </TouchableOpacity>
             <View style={css.CampPesqui}>
                 <Text style={css.TxtPesqui}>Digite seu endereço</Text>
                 <Image style={css.lupa} source={{uri:'https://png.pngtree.com/png-clipart/20230401/original/pngtree-magnifying-glass-line-icon-png-image_9015864.png',}}></Image>
@@ -39,7 +48,7 @@ export default function Localizar() {
                     <Text style={css.cartao}>Pagar via cartão</Text>
                 </View>
             </View>
-            <TouchableOpacity style={css.Botao}>
+            <TouchableOpacity style={css.Botao} onPress={() => setAgradece(true)}>
                 <Text style={css.btntexto}>Finalizar Pedido</Text>
             </TouchableOpacity>
         </View>
@@ -177,7 +186,16 @@ const css = StyleSheet.create({
         height:260,
        
     },
-    
+    volta:{
+        position:'absolute',
+        zIndex: 99,
+        top: 10,
+        left: 15,
+        
+    },
+    voltaTxt: {
+        fontSize: 20,
+    }
 
         
 });
