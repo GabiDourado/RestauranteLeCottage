@@ -61,7 +61,7 @@ export default function Pedido () {
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
                     {rede?
-                    <View >
+                    <View style={css.tudo2}>
                         <View style={css.titulo}>
                             <View style={css.linha}>
                                 <Text style={css.tituloPT}>Pedidos anteriores</Text>
@@ -83,7 +83,7 @@ export default function Pedido () {
                             ></PedidoAnterior>
                         </View>
                     </View>
-                    : <Text></Text>}
+                    : <View style={css.dadosMoveis}></View>}
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -99,6 +99,13 @@ const css = StyleSheet.create({
     tudo: {
         backgroundColor: "#FAE0E2",
         height: '100%',
+        width: "100%",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    tudo2: {
+        backgroundColor: "#FAE0E2",
         width: "100%",
         display: 'flex',
         justifyContent: 'center',
@@ -141,7 +148,11 @@ const css = StyleSheet.create({
     anteriorImg:{
         width:'100%',
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+    },
+    dadosMoveis:{
+        height: 500,
+        backgroundColor: "#FAE0E2",
     },
     atualImg:{
         width:'100%',
