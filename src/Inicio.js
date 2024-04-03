@@ -4,7 +4,6 @@ import { TouchableOpacity } from "react-native";
 import { useContext } from "react";
 import {UserContext} from './Context/UserContext'
 import Cardapio from './Cardapio'
-import Cadastro from "./Cadastro";
 
 export default function Inicio ({navigation}){
     
