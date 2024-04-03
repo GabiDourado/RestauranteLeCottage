@@ -1,9 +1,88 @@
-import { Text, TouchableOpacity, View, TextInput, StyleSheet , Component} from "react-native";
+import { useState } from "react";
+import { Text, TouchableOpacity, View, TextInput, StyleSheet , Component, Keyboard, Platform} from "react-native";
 import CalendarPicker from "react-native-calendar-picker";
+
+import * as Calendar from 'expo-calendar';
+import { useEffect } from "react";
+import { uuid } from "expo-modules-core";
 
 
 export default function Reserva(){
 
+    const[Agenda, setAgenda] = useState();
+    const[Inicio, setInicio] = useState();
+    const[Final, setFinal] = useState();
+    const[dados, setDados] = useState([]);
+
+    async function getPermissions()
+    {
+        const {status} = await Calendar.requestCalendarPermissionsAsync();
+        if (status === 'granted') {
+            const calendar = await Calendar.getCalendarPermissionsAsync(Calendar.EntityTypes.EVENT);
+        }
+    }
+
+    useEffect(() => {
+        getPermissions();
+    }, []);
+
+    async function Salvar(){
+        if( Agenda !="" && Inicio !="" && Final !=""){
+            Keyboard.dismiss();
+            const evento = {
+                id: uuid.v4(),
+                nome: Agenda,
+                Inicio: Inicio,
+                final : Final,
+            
+            };
+            const novoEvento = [ ...dados, evento];
+            setDados( novoEvento);
+
+            const defaultCalendarSource =
+            Platform.OS === 'ios'
+            ?await Calendar.getDefaultCalendarAsync()
+            : { isLocalAccount: true, name: 'Expo Calendar'};
+            const newCalendarID = await Calendar.createCalendarAsync({
+                title: 'Expo Calendar',
+                color: 'lightgreen',
+                entityType: Calendar.EntityTypes.EVENT,
+                sourceId:defaultCalendarSource.id,
+                source: defaultCalendarSource,
+                name: 'internalCalendarName',
+                ownerAccount: 'personal',
+                accessLevel: Calendar.CalendarAccessLevel.OWNER,
+            });
+
+            let InicioDataHora = Inicio.split(" ");
+            let InicioData = InicioDataHora[0].split("-");
+            let InicioHora = InicioDataHora[1].split(".")
+
+            let finalDataHora = Final.split(" ");
+            let finalData = finalDataHora[0].split("-");
+            let finalHora = finalDataHora[1].split(".");
+
+            const newEvente = {
+                title: Agenda,
+                startDate: new Date(InicioData[2], InicioData[1] -1 , InicioData[0], InicioHora[0], InicioHora[1]),
+                endDate: new Date(finalData[2], finalData[1] -1, finalData[0], finalHora[0], finalHora[1]),
+                location: 'Le Cottage',
+                notes: 'Reserva de mesa',
+            };
+
+            try {
+                await Calendar.createEventAsync(newCalendarID, newEvente);
+                alert('Sua reserva foi feita com exito!');
+            } catch (erro) {
+                alert('Erro ao realizar reserva!');
+            }
+
+            setAgenda("")
+            setInicio("")
+            setFinal("")
+        }
+    };
+    
     return(
         <View style={css.Todo}>
             <View style={css.titulo}>
@@ -13,16 +92,38 @@ export default function Reserva(){
                 <Text style={css.tituloFR}>Faites votre réservation</Text>
             </View>
             <View style={css.inputs}>
-                <Text style={css.label}>Data</Text>
-                <TextInput style={css.campo} keyboardType="numeric" placeholder="dd-mm-aaaa"></TextInput>
-                <Text style={css.label}>Hora</Text>
-                <TextInput style={css.campo} keyboardType="numeric" placeholder="hh.mm"></TextInput>
-                <Text style={css.label}>Pessoas</Text>
-                <TextInput style={css.campo} keyboardType="numeric" placeholder="000"></TextInput>
-                <TouchableOpacity style={css.Botao}>
+                
+                <Text style={css.label}>Nome do cliente</Text>
+                
+                <TextInput style={css.campo} placeholder="Insira seu nome"
+                    TextInput={Agenda}
+                    onChangeText={(digitando) => setAgenda(digitando)}
+                    value={Agenda}
+                ></TextInput>
+                
+                <Text style={css.label}>Data e hora de inicio</Text>
+                
+                <TextInput style={css.campo} keyboardType="numeric" placeholder="dd-mm-aaaa hh.mm"
+                    TextInput={Inicio}
+                    onChangeText={(digitando) => setInicio(digitando)}
+                    value={Inicio}
+                ></TextInput>
+                
+                <Text style={css.label}>Data e hora de termino</Text>
+                
+                <TextInput style={css.campo} keyboardType="numeric" placeholder="dd-mm-aaaa hh.mm"
+                    TextInput={Final}
+                    onChangeText={(digitando) => setFinal(digitando)}
+                    value={Final}
+                ></TextInput>
+                
+                <TouchableOpacity style={css.Botao} 
+                                onPress={Salvar}>
                     <Text style={css.btntexto}>Agendar</Text>
                 </TouchableOpacity>
             </View>
+
+
             
             <View style={css.calendario}>
                 <CalendarPicker />
