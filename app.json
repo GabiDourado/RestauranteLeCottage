@@ -34,12 +34,6 @@
         }
       ],
       [
-        "expo-contacts",
-        {
-          "contactsPermission": "O aplicativo precisa de permissão para acessar seus contatos"
-        }
-      ],
-      [
         "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "O aplicativo precisa de permissão para acessar sua localização"
