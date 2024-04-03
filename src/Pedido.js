@@ -61,7 +61,7 @@ export default function Pedido () {
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
                     {rede?
-                    <View style={css.tudo}>
+                    <View >
                         <View style={css.titulo}>
                             <View style={css.linha}>
                                 <Text style={css.tituloPT}>Pedidos anteriores</Text>
