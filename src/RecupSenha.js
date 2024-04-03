@@ -7,7 +7,7 @@ export default function RecupSenha(){
     return(
         <View style={css.Todo}>
         <TouchableOpacity style={css.volta}  onPress={() => setEsqueciSenha(false)}>
-            <Text>❮</Text>
+            <Text style={css.voltaTxt}>❮</Text>
         </TouchableOpacity>
         <View style={css.titulo}>
             <View style={css.linha}>
@@ -34,6 +34,7 @@ const css = StyleSheet.create({
         height: "100%",
         flex: 1,
         alignItems: 'center',
+        paddingTop: 20
     },
     Botao: {
         backgroundColor: "rgba(140, 0, 0, 1)",
@@ -66,6 +67,7 @@ const css = StyleSheet.create({
     titulo: {
         width: '70%',
         margin: 25,
+        marginTop: 40
     },
     Campo:{
         fontSize: 20,
@@ -80,9 +82,12 @@ const css = StyleSheet.create({
     volta:{
         position:'absolute',
         zIndex: 99,
-        top: 10,
-        left: 10,
-        fontSize: 30,
+        top: 35,
+        left: 15,
+        
+    },
+    voltaTxt: {
+        fontSize: 25,
     }
     
 })
