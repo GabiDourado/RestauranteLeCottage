@@ -1,10 +1,42 @@
 import { Image, Text, TouchableOpacity, View, StyleSheet } from "react-native";
+import * as Network from 'expo-network';
+import { useEffect, useState } from "react";
 
-export default function Pratos({foto, nome, preco}){
+export default function Pratos({foto, nome, preco, desc}){
+    const [ semRede, setSemRede ] = useState( false );
+    const [ dadosMoveis, setDadosMoveis ] = useState(false);
+    const [ rede, setRede ] = useState(false);
+
+    async function getStatus(){
+        const status = await Network.getNetworkStateAsync();
+        if(status.type == "WIFI"){
+            setRede(true);
+        }
+        else{
+            setRede(false);
+        }
+
+        if(status.type == "CELLULAR"){
+          setDadosMoveis(true);
+        }
+        else{
+          setDadosMoveis(false)
+        }
+    }
+
+    useEffect( () => {
+        getStatus();
+    },[]);
+
+    useEffect( () => {
+        getStatus();
+    },[rede, dadosMoveis]);
     return(
         <View style={css.tudo}>
             <View style={css.caixa}>
-                <Image style={css.img} source={{uri: foto,}}></Image>
+                {rede? 
+                <Image style={css.img} source={{uri: foto,}}></Image>: 
+                <Text style={css.desc}>{desc}</Text>}
             </View>
             <View style={css.info}>
                 <Text style={css.nome}>{nome}</Text>
@@ -64,5 +96,8 @@ const css = StyleSheet.create({
     info:{
         width:'65%',
         paddingLeft: '8%'
+    },
+    desc: {
+        textAlign:'center',
     }
 });

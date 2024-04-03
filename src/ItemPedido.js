@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import * as Network from 'expo-network';
+import { useContext, useEffect, useState } from 'react';
 
-export default function ItemPedido({foto, nome, preco}){
+export default function ItemPedido({foto, nome, preco, desc}){
     const [ numero, setNumero ] = useState(1);
 
     function AumentaPedido(){
@@ -13,9 +14,39 @@ export default function ItemPedido({foto, nome, preco}){
             setNumero(1);
         }
     }
+    const [ semRede, setSemRede ] = useState( false );
+    const [ dadosMoveis, setDadosMoveis ] = useState(false);
+    const [ rede, setRede ] = useState(false);
+
+    async function getStatus(){
+        const status = await Network.getNetworkStateAsync();
+        if(status.type == "WIFI"){
+            setRede(true);
+        }
+        else{
+            setRede(false);
+        }
+
+        if(status.type == "CELLULAR"){
+          setDadosMoveis(true);
+        }
+        else{
+          setDadosMoveis(false)
+        }
+    }
+
+    useEffect( () => {
+        getStatus();
+    },[]);
+
+    useEffect( () => {
+        getStatus();
+    },[rede, dadosMoveis]);
     return(
         <View style={css.caixa}>
-            <Image style={css.img} source={{uri: foto,}}></Image>
+            {rede? <Image style={css.img} source={{uri: foto,}}></Image>
+            : <Text style={css.desc}>{desc}</Text>}
+            
             <View style={css.info}>
                 <Text style={css.titulo}>{nome}</Text>
                 <Text style={css.preco}>{preco}</Text>    
@@ -52,6 +83,11 @@ const css = StyleSheet.create({
         width: '40%',
         height: 100,
         borderRadius: 10
+    },
+    desc: {
+        width: '40%',
+        height: 100,
+        textAlign:'center'
     },
     info:{
         width: '50%',

@@ -1,14 +1,12 @@
 import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 import Queridinhos from './Queridinhos'
+import * as Network from 'expo-network';
 import { TouchableOpacity } from "react-native";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import {UserContext} from './Context/UserContext'
 import Cardapio from './Cardapio'
 
 export default function Inicio ({navigation}){
-    
-
-    
     const dados = [
         {
             id: "01",
@@ -24,8 +22,38 @@ export default function Inicio ({navigation}){
         },
     ]
 
+    const [ semRede, setSemRede ] = useState( false );
+    const [ dadosMoveis, setDadosMoveis ] = useState(false);
+    const [ rede, setRede ] = useState(false);
+
+    async function getStatus(){
+        const status = await Network.getNetworkStateAsync();
+        if(status.type == "WIFI"){
+            setRede(true);
+        }
+        else{
+            setRede(false);
+        }
+
+        if(status.type == "CELLULAR"){
+          setDadosMoveis(true);
+        }
+        else{
+          setDadosMoveis(false)
+        }
+    }
+
+    useEffect( () => {
+        getStatus();
+    },[]);
+
+    useEffect( () => {
+        getStatus();
+    },[rede, dadosMoveis]);
+
     return(
         <View style={css.tudo}>
+             
             <View style={css.titulo}>
                 <View style={css.linha}>
                     <Text style={css.tituloPT}>O que você deseja hoje?</Text>
@@ -46,24 +74,28 @@ export default function Inicio ({navigation}){
                     <Text style={css.btnTexto}>Restaurantes</Text>
                 </TouchableOpacity>
             </View>
-            <View style={css.titulo}>
-            <View style={css.linha}>
-                <Text style={css.tituloPT}>Queridinhos da semana</Text>
-            </View>
-            <Text style={css.tituloFR}>Favori de la semaine</Text>
-            </View>
-           <FlatList
-            data={dados}
-            renderItem={({item}) => <Queridinhos
-                                        nome={item.nome}
-                                        preco={'R$ ' + (item.preco).toFixed(2).replace('.',',')}
-                                        foto={item.foto}
-                                        />}
-            keyExtractor={item => item.id}
-            contentContainerStyle={css.container}
-            horizontal={false}
-            numColumns={2}
-           />
+            {rede ?
+            <View style={css.tudo}>
+                <View style={css.titulo}>
+                <View style={css.linha}>
+                    <Text style={css.tituloPT}>Queridinhos da semana</Text>
+                </View>
+                <Text style={css.tituloFR}>Favori de la semaine</Text>
+                </View>
+                <FlatList
+                    data={dados}
+                    renderItem={({item}) => <Queridinhos
+                                                nome={item.nome}
+                                                preco={'R$ ' + (item.preco).toFixed(2).replace('.',',')}
+                                                foto={item.foto}
+                                                />}
+                    keyExtractor={item => item.id}
+                    contentContainerStyle={css.container}
+                    horizontal={false}
+                    numColumns={2}
+                />
+           </View>
+           : <Text></Text>}
         </View>
     );
 }
@@ -74,7 +106,6 @@ const css = StyleSheet.create({
         height: '100%',
         width: "100%",
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center'
     },
     btn: {

@@ -1,9 +1,38 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import ItemPedido from "./ItemPedido";
+import { useContext, useEffect, useState } from 'react';
 import PedidoAnterior from "./PedidoAnterior";
+import * as Network from 'expo-network';
 
 export default function Pedido () {
-    
+    const [ semRede, setSemRede ] = useState( false );
+    const [ dadosMoveis, setDadosMoveis ] = useState(false);
+    const [ rede, setRede ] = useState(false);
+
+    async function getStatus(){
+        const status = await Network.getNetworkStateAsync();
+        if(status.type == "WIFI"){
+            setRede(true);
+        }
+        else{
+            setRede(false);
+        }
+
+        if(status.type == "CELLULAR"){
+          setDadosMoveis(true);
+        }
+        else{
+          setDadosMoveis(false)
+        }
+    }
+
+    useEffect( () => {
+        getStatus();
+    },[]);
+
+    useEffect( () => {
+        getStatus();
+    },[rede, dadosMoveis]);
     return(
         <SafeAreaView style={css.container}>
             <ScrollView style={css.scroll}>
@@ -17,10 +46,12 @@ export default function Pedido () {
                         </View>
                         <View style={css.atualImg}>
                             <ItemPedido
+                            desc="Frango empanado com molho de tomate e queijo, acompanhado por arroz e purê"
                             foto="https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg"
                             nome="Parmegiana"
                             preco="R$ 40,00"></ItemPedido>
                             <ItemPedido
+                            desc='Conjunto de legumes que incluem abobrinhas, berinjelas, cebolas, tomates, pimentões, azeite, alecrim, manjericão, alho e molho de tomate'
                             foto="https://www.receitasnestle.com.br/sites/default/files/srh_recipes/9367969f6efd0f47249a4b1c2ef9ded5.jpg"
                             nome="Ratatouille"
                             preco="R$ 38,00"></ItemPedido>
@@ -29,35 +60,41 @@ export default function Pedido () {
                     <TouchableOpacity style={css.btn}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
-                    <View style={css.titulo}>
-                        <View style={css.linha}>
-                            <Text style={css.tituloPT}>Pedidos anteriores</Text>
+                    {rede?
+                    <View style={css.tudo}>
+                        <View style={css.titulo}>
+                            <View style={css.linha}>
+                                <Text style={css.tituloPT}>Pedidos anteriores</Text>
+                            </View>
+                            <Text style={css.tituloFR}>Commandes précédentes</Text>
                         </View>
-                        <Text style={css.tituloFR}>Commandes précédentes</Text>
+                        <View style={css.anteriorImg}>
+                            <PedidoAnterior 
+                            foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
+                            data='12/02/2024'
+                            nome="Parmegiana"
+                            preco="R$ 40,00"
+                            ></PedidoAnterior>
+                            <PedidoAnterior 
+                            foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
+                            data='12/02/2024'
+                            nome="Parmegiana"
+                            preco="R$ 40,00"
+                            ></PedidoAnterior>
+                        </View>
                     </View>
-                    <View style={css.anteriorImg}>
-                        <PedidoAnterior 
-                        foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
-                        data='12/02/2024'
-                        nome="Parmegiana"
-                        preco="R$ 40,00"
-                        ></PedidoAnterior>
-                        <PedidoAnterior 
-                        foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
-                        data='12/02/2024'
-                        nome="Parmegiana"
-                        preco="R$ 40,00"
-                        ></PedidoAnterior>
-                    </View>
+                    : <Text></Text>}
                 </View>
             </ScrollView>
         </SafeAreaView>
+
     );
 }
 
 const css = StyleSheet.create({
     container:{
-        width: '100%'
+        width: '100%',
+        height: '100%'
     },
     tudo: {
         backgroundColor: "#FAE0E2",
@@ -115,5 +152,5 @@ const css = StyleSheet.create({
         width: '100%', 
         display:'flex',
         alignItems:'center'
-    }
+    },
 })
