@@ -1,10 +1,21 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Directions } from 'react-native-gesture-handler'
 import { UserContext } from './Context/UserContext';
 import Agradecimento from './Agradecimento';
 
 export default function Localizar() {
+    const [ cor, setCor ] = useState('#fff');
+
+    function MudaCor(){
+        if(cor == '#fff'){
+            setCor('rgba(64, 137, 80, 1)')
+        }
+        if(cor == 'rgba(64, 137, 80, 1)'){
+            setCor('#fff')
+        }
+    }
+
     const{ setLocaliza, agradece, setAgradece } = useContext ( UserContext );
     if(agradece){
         return(<Agradecimento/>)
@@ -21,9 +32,15 @@ export default function Localizar() {
                 <Image style={css.lupa} source={{uri:'https://png.pngtree.com/png-clipart/20230401/original/pngtree-magnifying-glass-line-icon-png-image_9015864.png',}}></Image>
             </View>
 
-            <Text>Ou</Text>
-            <Text>Utilizar endereço cadastrado</Text>
-
+            <Text style={css.texto}>Ou</Text>
+            <View style={css.marcacao}>
+                <TouchableOpacity onPress={MudaCor} style={{backgroundColor: cor,
+                display:'flex',
+                alignItems:'center',
+                width: 20,
+                height:20, }}><Text style={css.marcadotxt}>✔</Text></TouchableOpacity>
+                <Text style={css.texto2}>Utilizar endereço cadastrado</Text>
+            </View>
             <Image  style={css.mapa} source={{uri:'https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/google-maps-e1707316052388.png?w=1220&h=674&crop=1',}}></Image>
 
             <View style={css.parteBaixo}>
@@ -38,15 +55,15 @@ export default function Localizar() {
                     <Text style={css.valor}>R$38,00</Text>
                 </View>
                 <View style={css.DINDIN}> 
-                    <Image style={css.lupa} source={{uri:'https://cdn-icons-png.freepik.com/512/10074/10074041.png',}}></Image>
+                    <Image style={css.icon} source={{uri:'https://cdn-icons-png.freepik.com/512/10074/10074041.png',}}></Image>
                     <Text style={css.dindin}>Pagar por dinheiro</Text>
                 </View>
                 <View style={css.PIX}>
-                    <Image style={css.lupa} source={{uri:'https://user-images.githubusercontent.com/741969/99538133-492fe280-298b-11eb-81a2-66779343e064.png',}}></Image>
+                    <Image style={css.icon} source={{uri:'https://user-images.githubusercontent.com/741969/99538133-492fe280-298b-11eb-81a2-66779343e064.png',}}></Image>
                     <Text style={css.pix}>Pagar via Pix</Text>
                 </View>
                 <View style={css.CART}>
-                    <Image style={css.lupa} source={{uri:'https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png',}}></Image>
+                    <Image style={css.icon} source={{uri:'https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/debit-credit-card-icon.png',}}></Image>
                     <Text style={css.cartao}>Pagar via cartão</Text>
                 </View>
             </View>
@@ -75,12 +92,13 @@ const css = StyleSheet.create({
         width: 300,
         display:"flex",
         alignItems:"center",
-        margin: "3%",
+        justifyContent:'center',
+        marginTop: 15,
         borderRadius: 10,
     },
     btntexto:{
         color: "white",
-        fontSize: 20
+        fontSize: 18
     },
     valor: {
         color: "rgba(64, 137, 80, 1)",
@@ -89,6 +107,11 @@ const css = StyleSheet.create({
     FulaECOM:{
         display:"flex",
         flexDirection:"row",
+        justifyContent:'center',
+        alignItems:'center',
+        width:'100%',
+        paddingTop: 10,
+        paddingBottom:10
     },
     CampPesqui:{
         backgroundColor: "white",
@@ -96,52 +119,67 @@ const css = StyleSheet.create({
         width:300,
         display:"flex",
         flexDirection:"row",
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:10,
     },
     lupa: {
-        height:30,
-        width:30,
-        marginLeft: 50,
-        marginTop: 13,
+        height:35,
+        width:35,
+    },
+    icon:{
+        height:35,
+        width:35,
     },
     TxtPesqui:{
         fontSize: 22,
+        width:'85%'
     },
     dindin: {
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
-        height: 40,
-        width: 240,
-        fontSize: 20,
-        textAlign:"center"
+        height: 35,
+        width: '75%',
+        fontSize: 18,
+        textAlign:'center',
+        textAlignVertical: 'center'
     },
     DINDIN:{
         display:"flex",
         flexDirection:"row",  
+        justifyContent:'center',
+        alignItems:'center'
     },
     pix: {
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
-        height: 40,
-        width: 240,
-        fontSize: 20,
-        textAlign:"center"
+        height: 35,
+        width: '75%',
+        fontSize: 18,
+        textAlign:"center",
+        textAlignVertical: 'center'
     },
     PIX: {
         display:"flex",
         flexDirection:"row",
+        justifyContent:'center',
+        alignItems:'center'
     },
     cartao: {
         backgroundColor: "rgba(217, 217, 217, 1)",
         margin: 10,
-        height: 40,
-        width: 240,
-        fontSize: 20,
-        textAlign:"center"
+        height: 35,
+        width: '75%',
+        fontSize: 18,
+        textAlign:"center",
+        textAlignVertical: 'center'
         
     },
     CART:{
         display:"flex",
         flexDirection:"row",
+        justifyContent:'center',
+        alignItems:'center',
     },
     fulaninho: {
         fontSize: 20,
@@ -154,7 +192,8 @@ const css = StyleSheet.create({
     Flanoo:{
         display:"flex",
         flexDirection:"row",
-        width: '55%'
+        alignItems:'center',
+        width: '60%',
     },
     total: {
         fontSize: 18,
@@ -166,29 +205,52 @@ const css = StyleSheet.create({
     mapa:{
         width: '100%',
         height:'40%',
+        marginBottom: 15,
+    
        
     },
     volta:{
         position:'absolute',
         zIndex: 99,
-        top: 10,
-        left: 15,
+        top: 16,
+        left: 17,
         
     },
     voltaTxt: {
-        fontSize: 20,
+        fontSize: 23,
     },
     tamanhoimg:{
         width: '30%'
     },
     circuloimg:{
-        width:'20%',
+        width:'18%',
         height:45,
         backgroundColor:'#D9D9D9',
         display:'flex',
         alignItems:'center',
         justifyContent:'center',
-        borderRadius: 50
+        borderRadius: 50, 
+        marginRight: 7
+    },
+    texto:{
+        fontSize: 20,
+        marginTop: 10
+    },
+    texto2:{
+        fontSize: 20,
+        marginLeft: 10
+    },
+    marcacao:{
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        margin: 10,
+        marginBottom: 10
+    },
+    marcadotxt:{
+        color:"#fff",
+        fontSize: 12
     }
 
         
