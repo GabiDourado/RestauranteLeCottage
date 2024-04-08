@@ -122,12 +122,13 @@ export default function Reserva(){
                     <Text style={css.btntexto}>Agendar</Text>
                 </TouchableOpacity>
             </View>
-
-
-            
-            <View style={css.calendario}>
-                <CalendarPicker />
-            </View>
+            <CalendarPicker 
+            width={330}
+            height={330}
+            dayShape="square"
+            selectedDayColor="#8c0000"
+            selectedDayTextColor="#fff"
+            />
         </View>
     );
 }
@@ -140,10 +141,6 @@ const css = StyleSheet.create({
        flex: 1,
       alignItems: 'center',
 
-    },
-    calendario: {
-        width: '80%',
-        height: 200
     },
     tituloPT: {
         fontSize: 23,
