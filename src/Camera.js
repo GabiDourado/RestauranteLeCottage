@@ -51,12 +51,13 @@ export default function TelaCamera() {
             }
         >
             
-                <View>
-                    <TouchableOpacity onPress={TrocaTipoCamera}>
-                        <Text style={css.Alternar}>Alternar</Text>
+                <View style={css.barraFoto}>
+                    <TouchableOpacity style={css.alternar} onPress={TrocaTipoCamera}>
+                        <Image style={css.Alternarimg} source={{uri:"https://cdn-icons-png.flaticon.com/512/1837/1837541.png",}}></Image>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={TirarFoto}>
-                        <Text style={css.TiFoto}>Tirar Foto</Text>
+                    <TouchableOpacity style={css.TiFoto} onPress={TirarFoto}></TouchableOpacity>
+                    <TouchableOpacity style={css.cancelar}>
+                        <Image style={css.cancelarimg} source={{uri:"https://cdn-icons-png.flaticon.com/512/126/126497.png",}}></Image>
                     </TouchableOpacity>
                 </View>
             </Camera>
@@ -91,25 +92,55 @@ const css = StyleSheet.create({
         height:"100%"
     },
 
-    Alternar: {
-        color:"white",
-        backgroundColor:"#000000",
-        opacity: 0.5,
-        width: "24%",
-        
-        
+    Alternarimg: {
+        width: 60,
+        height: 60 
     },
-    
-    TiFoto: {
-        color:"white",
-        backgroundColor:"black",
-        opacity: 0.6,
-        width: "20%",
-       height: "12%",
-        marginLeft: "42%",
-        marginTop: "150%",
+    alternar:{
+        backgroundColor:"#fff",
+        opacity: 0.7,
+        width: 80,
+        height: 80,
         borderRadius: 100,
-    }
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    TiFoto: {
+        
+        backgroundColor:"#fff",
+        opacity: 0.7,
+        width: 80,
+        height: 80,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius: 100,
+    },
+    barraFoto: {
+        width:'100%',
+        backgroundColor:'#8c0000',
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        padding: 15,
+        marginTop:"159%"
+    },
+    cancelarimg: {
+        width: 60,
+        height: 60 
+    },
+    cancelar:{
+        backgroundColor:"#fff",
+        opacity: 0.7,
+        width: 80,
+        height: 80,
+        borderRadius: 100,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
+    },
 
     
 })
