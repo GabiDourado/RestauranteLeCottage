@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, SafeAreaView, Image } from "react-native";
 import ItemPedido from "./ItemPedido";
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from "./Context/UserContext";
@@ -100,6 +100,13 @@ export default function Pedido () {
                         </View>
                     </View>
                     : <View style={css.dadosMoveis}></View>}
+                    {bateria<15? 
+                    <View>
+                        <Image source={{uri:"https://www.iconarchive.com/download/i140947/microsoft/fluentui-emoji-flat/Red-Exclamation-Mark-Flat.1024.png",}}/>
+                        <Text>Bateria fraca</Text>
+                        <Text>Você corre risco de não conseguir finalizar seu pedido</Text>
+                    </View>
+                    :<View style={css.dadosMoveis}></View>}
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -167,7 +174,7 @@ const css = StyleSheet.create({
         alignItems: 'center',
     },
     dadosMoveis:{
-        height: 500,
+        height: 180,
         backgroundColor: "#FAE0E2",
     },
     atualImg:{
