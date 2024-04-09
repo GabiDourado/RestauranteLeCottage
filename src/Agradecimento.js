@@ -6,9 +6,10 @@ import Pedido from "./Pedido";
 
 export default function Agradecimento({navigation})
 {   
-    const{ pedido, setPedido, setLocaliza } = useContext ( UserContext );
+    const{ pedido, setPedido, setLocaliza, localiza, setAgradece } = useContext ( UserContext );
 
     if (pedido){
+        setAgradece(false);
         return(<Pedido/>)
     }
     return(
@@ -28,7 +29,7 @@ export default function Agradecimento({navigation})
             <Text style={css.AgradecimentoFR}>Commande terminée avec succès</Text>
             
             
-            <TouchableOpacity style={css.BotaoVoltar} onPress={() => {setPedido(true), setLocaliza(false)}}>
+            <TouchableOpacity style={css.BotaoVoltar} onPress={() => setPedido(true)}>
                 <Text style={css.btntexto}>Voltar para pagina inicial</Text>
             </TouchableOpacity>
             

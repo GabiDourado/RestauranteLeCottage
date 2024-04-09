@@ -6,6 +6,7 @@ import PedidoAnterior from "./PedidoAnterior";
 import Localizar from "./Localizar";
 import * as Network from 'expo-network';
 import { useBatteryLevel } from 'expo-battery';
+import Agradecimento from "./Agradecimento";
 
 export default function Pedido () {
     const [ semRede, setSemRede ] = useState( false );
@@ -15,7 +16,7 @@ export default function Pedido () {
 
     const batteryLevel = useBatteryLevel();
 
-    const {localiza, setLocaliza, setAgradece} = useContext( UserContext );
+    const {localiza, setLocaliza, setAgradece, agradece} = useContext( UserContext );
 
     async function getStatus(){
         const status = await Network.getNetworkStateAsync();
@@ -73,7 +74,7 @@ export default function Pedido () {
                             preco="R$ 38,00"></ItemPedido>
                         </View>
                     </View>
-                    <TouchableOpacity style={css.btn} onPress={() => {setLocaliza(true); setAgradece(false)}}>
+                    <TouchableOpacity style={css.btn} onPress={() => setLocaliza(true)}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
                     {bateria>15? 

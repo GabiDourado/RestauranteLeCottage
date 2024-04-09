@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { Directions } from 'react-native-gesture-handler'
 import { UserContext } from './Context/UserContext';
 import Agradecimento from './Agradecimento';
+import Pedido from './Pedido';
 
 export default function Localizar() {
     const [ cor, setCor ] = useState('#fff');
@@ -16,11 +17,13 @@ export default function Localizar() {
         }
     }
 
-    const{ setLocaliza, agradece, setAgradece } = useContext ( UserContext );
+    const{ localiza, setLocaliza, agradece, setAgradece, pedido, setPedido } = useContext ( UserContext );
 
     if(agradece){
+        setLocaliza(false);
         return(<Agradecimento/>)
     }
+
   return (
     
 

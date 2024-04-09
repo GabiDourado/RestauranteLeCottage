@@ -32,6 +32,23 @@ function UserProvider({children}) {
 
        
     }
+    function mudaTela(){
+        if(pedido==false){
+            if(agradece==false){
+                setLocaliza(true)
+            }
+        }
+        if(pedido==false){
+            if(localiza==false){
+                setAgradece(true)
+            }
+        }
+        if(localiza==false){
+            if(agradece==false){
+                setPedido(true)
+            }
+        }
+    }
 
     useEffect(()=>{
         InfoUsuario()
@@ -57,7 +74,8 @@ function UserProvider({children}) {
             InfoUsuario, 
             setCadastro, 
             setEsqueciSenha, 
-            setAgradece
+            setAgradece,
+            mudaTela
             }}>
             {children}
         </UserContext.Provider>
