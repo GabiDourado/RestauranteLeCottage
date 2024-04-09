@@ -76,37 +76,45 @@ export default function Pedido () {
                     <TouchableOpacity style={css.btn} onPress={() => {setLocaliza(true); setAgradece(false)}}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
-                    {rede &&  bateria > 15 ?
-                    <View style={css.tudo2}>
-                        <View style={css.titulo}>
-                            <View style={css.linha}>
-                                <Text style={css.tituloPT}>Pedidos anteriores</Text>
-                            </View>
-                            <Text style={css.tituloFR}>Commandes précédentes</Text>
-                        </View>
-                        <View style={css.anteriorImg}>
-                            <PedidoAnterior 
-                            foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
-                            data='12/02/2024'
-                            nome="Parmegiana"
-                            preco="R$ 40,00"
-                            ></PedidoAnterior>
-                            <PedidoAnterior 
-                            foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
-                            data='12/02/2024'
-                            nome="Parmegiana"
-                            preco="R$ 40,00"
-                            ></PedidoAnterior>
-                        </View>
-                    </View>
-                    : <View style={css.dadosMoveis}></View>}
-                    {bateria<15? 
+                    {bateria>15? 
                     <View>
-                        <Image source={{uri:"https://www.iconarchive.com/download/i140947/microsoft/fluentui-emoji-flat/Red-Exclamation-Mark-Flat.1024.png",}}/>
-                        <Text>Bateria fraca</Text>
-                        <Text>Você corre risco de não conseguir finalizar seu pedido</Text>
+                        {rede && bateria > 15 ?
+                        <View style={css.tudo2}>
+                            <View style={css.titulo}>
+                                <View style={css.linha}>
+                                    <Text style={css.tituloPT}>Pedidos anteriores</Text>
+                                </View>
+                                <Text style={css.tituloFR}>Commandes précédentes</Text>
+                            </View>
+                            <View style={css.anteriorImg}>
+                                <PedidoAnterior 
+                                foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
+                                data='12/02/2024'
+                                nome="Parmegiana"
+                                preco="R$ 40,00"
+                                ></PedidoAnterior>
+                                <PedidoAnterior 
+                                foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
+                                data='12/02/2024'
+                                nome="Parmegiana"
+                                preco="R$ 40,00"
+                                ></PedidoAnterior>
+                            </View>
+                        </View>
+                        : <View style={css.dadosMoveis}></View>}
                     </View>
-                    :<View style={css.dadosMoveis}></View>}
+                    :
+                    <View style={css.dadosMoveis}>
+                        <View style={css.bateriafraca}>
+                            <View style={css.caixaimg}>
+                                <Image style={css.bateriaimg} source={{uri:"https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/512/Red-Exclamation-Mark-Flat-icon.png",}}/>
+                            </View>
+                            <View style={css.caixatxt}>
+                                <Text style={css.bateriatxt1}>Bateria fraca!!</Text>
+                                <Text style={css.bateriatxt}>Você corre risco de não conseguir finalizar seu pedido</Text>
+                            </View>
+                        </View>
+                    </View>}
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -174,7 +182,7 @@ const css = StyleSheet.create({
         alignItems: 'center',
     },
     dadosMoveis:{
-        height: 180,
+        height: 300,
         backgroundColor: "#FAE0E2",
     },
     atualImg:{
@@ -187,5 +195,43 @@ const css = StyleSheet.create({
         display:'flex',
         alignItems:'center'
     },
+    bateriafraca:{
+        backgroundColor:"#F7B8BA",
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        width: '80%',
+        borderRadius:10,
+        padding: 10
+    },
+    bateriaimg:{
+        width: 78,
+        height: 76,
+    },
+    bateriatxt1:{
+        textAlign:'center',
+        fontSize:19,
+        color:'#8c0000',
+        width:'70%'
+    },
+    bateriatxt: {
+        textAlign:'center',
+        fontSize:15,
+        color:'#8c0000',
+        width:'70%'
+    },
+    caixaimg: {
+        width:'20%',
+        display:'flex',
+        justifyContent:'center',
+        paddingLeft: 40
+    },
+    caixatxt:{
+        width:'100%',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
+    }
     
 })
