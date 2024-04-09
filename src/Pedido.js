@@ -5,11 +5,15 @@ import { UserContext } from "./Context/UserContext";
 import PedidoAnterior from "./PedidoAnterior";
 import Localizar from "./Localizar";
 import * as Network from 'expo-network';
+import { useBatteryLevel } from 'expo-battery';
 
 export default function Pedido () {
     const [ semRede, setSemRede ] = useState( false );
     const [ dadosMoveis, setDadosMoveis ] = useState(false);
     const [ rede, setRede ] = useState(false);
+    const [bateria, setBateria] = useState();
+
+    const batteryLevel = useBatteryLevel();
 
     const {localiza, setLocaliza, setAgradece} = useContext( UserContext );
 
@@ -37,6 +41,10 @@ export default function Pedido () {
     useEffect( () => {
         getStatus();
     },[rede, dadosMoveis]);
+
+    useEffect( () => {
+        setBateria( (batteryLevel * 100).toFixed(0) );
+      }, [batteryLevel] );
 
     if (localiza){
         return(<Localizar/>)
@@ -68,7 +76,7 @@ export default function Pedido () {
                     <TouchableOpacity style={css.btn} onPress={() => {setLocaliza(true); setAgradece(false)}}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
-                    {rede?
+                    {rede &&  bateria > 15 ?
                     <View style={css.tudo2}>
                         <View style={css.titulo}>
                             <View style={css.linha}>

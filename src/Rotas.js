@@ -18,6 +18,7 @@ import Localizar from './Localizar';
 import Perfil from './Perfil';
 import * as Network from 'expo-network';
 import Camera from './Camera';
+import { useBatteryLevel } from 'expo-battery';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,9 @@ export default function Rotas() {
     const [ semRede, setSemRede ] = useState( false );
     const [ dadosMoveis, setDadosMoveis ] = useState(false);
     const [ rede, setRede ] = useState(false);
+    const [bateria, setBateria] = useState();
+
+    const batteryLevel = useBatteryLevel();
 
     async function getStatus(){
         const status = await Network.getNetworkStateAsync();
@@ -51,6 +55,9 @@ export default function Rotas() {
         getStatus();
     },[rede, dadosMoveis]);
 
+    useEffect( () => {
+      setBateria( (batteryLevel * 100).toFixed(0) );
+    }, [batteryLevel] );
 
     const {logado} = useContext(UserContext);
 
@@ -59,7 +66,7 @@ export default function Rotas() {
     }
   return (
     <NavigationContainer>
-      {rede ?
+      {rede && bateria > 15 ?
       <Tab.Navigator
       initialRouteName='Início'
       screenOptions={{
