@@ -11,7 +11,7 @@ export default function Pedido () {
     const [ dadosMoveis, setDadosMoveis ] = useState(false);
     const [ rede, setRede ] = useState(false);
 
-    const {localiza, setLocaliza} = useContext( UserContext );
+    const {localiza, setLocaliza, setAgradece} = useContext( UserContext );
 
     async function getStatus(){
         const status = await Network.getNetworkStateAsync();
@@ -65,7 +65,7 @@ export default function Pedido () {
                             preco="R$ 38,00"></ItemPedido>
                         </View>
                     </View>
-                    <TouchableOpacity style={css.btn} onPress={() => setLocaliza(true)}>
+                    <TouchableOpacity style={css.btn} onPress={() => {setLocaliza(true); setAgradece(false)}}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
                     {rede?

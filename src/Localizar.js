@@ -17,6 +17,7 @@ export default function Localizar() {
     }
 
     const{ setLocaliza, agradece, setAgradece } = useContext ( UserContext );
+
     if(agradece){
         return(<Agradecimento/>)
     }
@@ -67,7 +68,7 @@ export default function Localizar() {
                     <Text style={css.cartao}>Pagar via cartão</Text>
                 </View>
             </View>
-            <TouchableOpacity style={css.Botao} onPress={() => setAgradece(true)}>
+            <TouchableOpacity style={css.Botao} onPress={() => {setAgradece(true)}}>
                 <Text style={css.btntexto}>Finalizar Pedido</Text>
             </TouchableOpacity>
         </View>
