@@ -16,7 +16,7 @@ export default function Pedido () {
 
     const batteryLevel = useBatteryLevel();
 
-    const {localiza, setLocaliza, setAgradece, agradece} = useContext( UserContext );
+    const {agradece, setAgradece, localiza, setLocaliza} = useContext( UserContext );
 
     async function getStatus(){
         const status = await Network.getNetworkStateAsync();
@@ -47,7 +47,7 @@ export default function Pedido () {
         setBateria( (batteryLevel * 100).toFixed(0) );
       }, [batteryLevel] );
 
-    if (localiza){
+    if (localiza == true){
         return(<Localizar/>)
     }
     return(
@@ -74,7 +74,7 @@ export default function Pedido () {
                             preco="R$ 38,00"></ItemPedido>
                         </View>
                     </View>
-                    <TouchableOpacity style={css.btn} onPress={() => setLocaliza(true)}>
+                    <TouchableOpacity style={css.btn} onPress={() => {setLocaliza(true);if(agradece == false){setAgradece(true)} else{setAgradece(false)}; console.log(agradece)}}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
                     {bateria>15? 

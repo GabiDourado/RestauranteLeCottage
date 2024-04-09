@@ -17,11 +17,12 @@ export default function Localizar() {
         }
     }
 
-    const{ localiza, setLocaliza, agradece, setAgradece, pedido, setPedido } = useContext ( UserContext );
+    const{ setPedido, pedido, setLocaliza, agradece, setAgradece } = useContext ( UserContext );
 
-    if(agradece){
-        setLocaliza(false);
+    if(agradece == true && pedido == false){
+
         return(<Agradecimento/>)
+        
     }
 
   return (
@@ -71,7 +72,7 @@ export default function Localizar() {
                     <Text style={css.cartao}>Pagar via cartão</Text>
                 </View>
             </View>
-            <TouchableOpacity style={css.Botao} onPress={() => {setAgradece(true)}}>
+            <TouchableOpacity style={css.Botao} onPress={() => {setAgradece(true); setPedido(false); console.log(agradece);}}>
                 <Text style={css.btntexto}>Finalizar Pedido</Text>
             </TouchableOpacity>
         </View>

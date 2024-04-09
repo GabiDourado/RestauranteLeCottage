@@ -9,7 +9,7 @@ function UserProvider({children}) {
     const [ cadastro, setCadastro ] = useState(false);
     const [ esqueciSenha, setEsqueciSenha] = useState(false);
     const [ agradece, setAgradece] = useState(false);
-    const [ pedido, setPedido ]= useState(false);
+    const [ pedido, setPedido ]= useState(true);
     const [ camera, setCamera ]= useState(false);
     const [ fotoSalva, setFotoSalva ] = useState(false);
     const [ erro, setErro ] = useState(false);
@@ -32,23 +32,39 @@ function UserProvider({children}) {
 
        
     }
-    function mudaTela(){
-        if(pedido==false){
-            if(agradece==false){
-                setLocaliza(true)
+    /*function mudaTela(){
+        if(pedido == true){
+            if(agradece == false) {
+                setLocaliza(true);
+                if(localiza == true){
+                    setAgradece(false);
+                    setPedido(false);
+                    console.log(pedido, localiza, agradece)
+                }
             }
         }
-        if(pedido==false){
-            if(localiza==false){
-                setAgradece(true)
+        if(localiza == true){
+            if(pedido == false){
+                setAgradece(true);
+                if(agradece == true){
+                    setLocaliza(false);
+                    setPedido(false);
+                    console.log(pedido, localiza, agradece)
+                }
             }
         }
-        if(localiza==false){
-            if(agradece==false){
-                setPedido(true)
+        if(agradece == true){
+            if(localiza == false) {
+                setPedido(true);
+                if(pedido == true){
+                    setLocaliza(false);
+                    setAgradece(false);
+                    console.log(pedido, localiza, agradece)
+                }
             }
         }
-    }
+    }*/
+    
 
     useEffect(()=>{
         InfoUsuario()
@@ -75,10 +91,11 @@ function UserProvider({children}) {
             setCadastro, 
             setEsqueciSenha, 
             setAgradece,
-            mudaTela
+            //mudaTela
             }}>
             {children}
         </UserContext.Provider>
     )
 }
+
 export default UserProvider;
