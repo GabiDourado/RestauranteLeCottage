@@ -72,16 +72,16 @@ export default function Inicio ({navigation}){
                 <Text style={css.tituloFR}>Que veux-tu aujourd'hui ?</Text>
             </View>
             <View style={css.botoes}>
-                <TouchableOpacity style={css.btn} /*onPress={ () => setCardapio(true) }*/>
+                <TouchableOpacity style={css.btn} onPress={() => navigation.navigate( "Cardápio" ) }>
                     <Text style={css.btnTexto}>Cardápio</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={css.btn} /*onPress={ () => navigation.navigate( "Pedido" ) }*/>
+                <TouchableOpacity style={css.btn} onPress={ () => navigation.navigate( "Pedido" ) }>
                     <Text style={css.btnTexto}>Pedir</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={css.btn} /*onPress={ () => navigation.navigate( "Reserva" ) }*/>
+                <TouchableOpacity style={css.btn} onPress={ () => navigation.navigate( "Reservas" ) }>
                     <Text style={css.btnTexto}>Reservas</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={css.btn} /*onPress={ () => navigation.navigate( "Locais" ) }*/>
+                <TouchableOpacity style={css.btn} onPress={ () => navigation.navigate( "Locais" ) }>
                     <Text style={css.btnTexto}>Restaurantes</Text>
                 </TouchableOpacity>
             </View>
