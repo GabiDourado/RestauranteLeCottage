@@ -1,9 +1,11 @@
 import { Text, View, StyleSheet, TouchableOpacity, Modal, Image} from "react-native";
 import { Camera, CameraType } from "expo-camera";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import React from 'react'
+import { UserContext } from "./Context/UserContext";
 
 export default function TelaCamera() {
+    const {setCamera, fotoSalva, setFotoSalva} = useContext(UserContext);
 
     const[ permissao, setPermissao ] = useState( false );
     const[ tipo , setTipo ] = useState(CameraType.back);
@@ -28,6 +30,7 @@ export default function TelaCamera() {
     {
         const foto = await CameraRef.current.takePictureAsync();
         setFoto( foto.uri );
+        setFotoSalva(foto);
     }
 
     useEffect( () => {
@@ -56,7 +59,7 @@ export default function TelaCamera() {
                         <Image style={css.Alternarimg} source={{uri:"https://cdn-icons-png.flaticon.com/512/1837/1837541.png",}}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity style={css.TiFoto} onPress={TirarFoto}></TouchableOpacity>
-                    <TouchableOpacity style={css.cancelar}>
+                    <TouchableOpacity style={css.cancelar} onPress={() => setCamera(false)}>
                         <Image style={css.cancelarimg} source={{uri:"https://cdn-icons-png.flaticon.com/512/126/126497.png",}}></Image>
                     </TouchableOpacity>
                 </View>
@@ -71,13 +74,16 @@ export default function TelaCamera() {
                 transparente={true}>
                     <Image
                         source={{ uri: foto}}
-                        height={500}
-                        width="100%">
-                
-                    </Image>
-                    <TouchableOpacity onPress={ () => setFoto( "" ) }>
-                        <Text>Fechar</Text>
-                    </TouchableOpacity>
+                        style={css.fotinha}
+                    />
+                    <View style={css.botoes}>
+                        <TouchableOpacity style={css.btns} onPress={() => setFoto("")}>
+                            <Image style={css.salvarimg} source={{uri:"https://png.pngtree.com/png-vector/20231201/ourmid/pngtree-ok-icon-like-png-image_10804394.png",}}></Image>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={css.btns} onPress={() => setCamera(false)}>
+                            <Image style={css.cancelarimg2} source={{uri:"https://cdn-icons-png.flaticon.com/512/126/126497.png",}}></Image>
+                        </TouchableOpacity>
+                    </View>
                 </Modal> 
                 
                 }
@@ -131,6 +137,14 @@ const css = StyleSheet.create({
         width: 60,
         height: 60 
     },
+    cancelarimg2: {
+        width: 80,
+        height: 80 
+    },
+    salvarimg:{
+        width: 80,
+        height: 80,
+    },
     cancelar:{
         backgroundColor:"#fff",
         opacity: 0.7,
@@ -141,6 +155,28 @@ const css = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    btns:{
+        backgroundColor:"#fff",
+        opacity: 0.7,
+        width: 100,
+        height: 100,
+        borderRadius: 100,
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        margin: 20
+    },
+    fotinha:{
+        width:'100%',
+        height:500,
+    },
+    botoes:{
+        display:'flex',
+        alignItems:'center',
+        height:600,
+        backgroundColor: '#8c0000',
+        padding: 20
+    }
 
     
 })

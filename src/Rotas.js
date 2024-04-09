@@ -8,7 +8,6 @@ import Cadastro from './Cadastro';
 import Login from './Login';
 import Inicio from './Inicio';
 import Cardapio from './Cardapio';
-import Calendario from './Calendario';
 import Pedido from './Pedido';
 import Locais from './Locais';
 import Reserva from './Reserva'
@@ -134,7 +133,6 @@ export default function Rotas() {
               <MaterialCommunityIcons name="account" color={color} size={size} />
             ),
           }} />
-          <Tab.Screen name="Camera" component={Camera} />
       </Tab.Navigator>
       
       : <Tab.Navigator
@@ -200,7 +198,6 @@ export default function Rotas() {
               <MaterialCommunityIcons name="account" color={color} size={size} />
             ),
           }} />
-          <Tab.Screen name="Camera" component={Camera} />
       </Tab.Navigator> }
     </NavigationContainer>
   );

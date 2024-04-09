@@ -10,6 +10,8 @@ function UserProvider({children}) {
     const [ esqueciSenha, setEsqueciSenha] = useState(false);
     const [ agradece, setAgradece] = useState(false);
     const [ pedido, setPedido ]= useState(false);
+    const [ camera, setCamera ]= useState(false);
+    const [ fotoSalva, setFotoSalva ] = useState(false);
 
     async function Login ( email, senha ){
         if(email == "gabi.dourado@mail.com" && senha == "12345" ){
@@ -39,6 +41,10 @@ function UserProvider({children}) {
             localiza: localiza, 
             agradece: agradece, 
             pedido: pedido,
+            camera: camera,
+            fotoSalva: fotoSalva,
+            setCamera,
+            setFotoSalva,
             setLocaliza, 
             setPedido,
             Login, 

@@ -1,11 +1,21 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import React, { useContext } from 'react'
 import { UserContext } from './Context/UserContext'
+import TelaCamera from './Camera';
 
 export default function Perfil() {
+  const { camera, setCamera, fotoSalva} = useContext(UserContext);
+  if(camera){
+    return(<TelaCamera/>)
+  }
   return (
     <View style={css.Todo}>
-      <Image style={css.conta} source={{uri: "https://cdn-icons-png.flaticon.com/512/3736/3736502.png",}}/>
+      <TouchableOpacity style={css.conta1} onPress={() => setCamera(true)}> 
+        {fotoSalva?
+          <Image style={css.fotoPerfil} source={fotoSalva}/>
+        :
+        <Image style={css.conta} source={{uri: "https://cdn-icons-png.flaticon.com/512/3736/3736502.png",}}/>}
+        </TouchableOpacity>
       <View style={css.Dados} >
         <Text style={css.Dadostxt}>Nome: Fulaninho</Text>
         <Text style={css.Dadostxt}>Cidade: Pindamonhangaba</Text>
@@ -61,8 +71,22 @@ btntexto:{
   color: "white",
   fontSize: 20
 },
+conta1: {
+  width: '100%',
+  height: 200,
+  display:'flex',
+  justifyContent:'center',
+  alignItems:'center'
+},
 conta: {
   width: '50%',
   height: 200,
+  borderRadius:100
 },
+
+fotoPerfil: {
+  width: '40%',
+  height: 170,
+  borderRadius:100
+}
 })
