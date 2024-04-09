@@ -7,9 +7,8 @@ import RecupSenha from "./RecupSenha";
 export default function Login({navigate}){
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [erro, setErro] = useState(false);
 
-    const {Login} = useContext( UserContext );
+    const {Login, erro} = useContext( UserContext );
 
     function realizaLogin(){
       Login( email, senha );
@@ -38,6 +37,7 @@ export default function Login({navigate}){
             <TouchableOpacity style={css.Botao} onPress={realizaLogin}>
                 <Text style={css.btntexto}>Entrar</Text>
             </TouchableOpacity>
+            {erro? <Text>Email ou senha errados</Text>: <View></View>}
             <View style={css.esqueci}>
                 <TouchableOpacity onPress={() => setEsqueciSenha(true)}>
                     <Text style={css.link}>Esqueci minha senha</Text>

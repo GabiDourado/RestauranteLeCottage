@@ -12,11 +12,15 @@ function UserProvider({children}) {
     const [ pedido, setPedido ]= useState(false);
     const [ camera, setCamera ]= useState(false);
     const [ fotoSalva, setFotoSalva ] = useState(false);
+    const [ erro, setErro ] = useState(false);
 
     async function Login ( email, senha ){
         if(email == "gabi.dourado@mail.com" && senha == "12345" ){
             await AsyncStorage.setItem('usuario', "Gabi Dourado");
                 setLogado(true);    
+        }
+        else{
+            setErro(true)
         }
     }
     async function InfoUsuario(){
@@ -43,6 +47,8 @@ function UserProvider({children}) {
             pedido: pedido,
             camera: camera,
             fotoSalva: fotoSalva,
+            erro: erro,
+            setErro,
             setCamera,
             setFotoSalva,
             setLocaliza, 
