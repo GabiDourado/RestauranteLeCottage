@@ -8,49 +8,62 @@ import * as Network from 'expo-network';
 import { useBatteryLevel } from 'expo-battery';
 import Agradecimento from "./Agradecimento";
 
-export default function Pedido () {
-    const [ semRede, setSemRede ] = useState( false );
-    const [ dadosMoveis, setDadosMoveis ] = useState(false);
-    const [ rede, setRede ] = useState(false);
+export default function Pedido({navigation}) {
+    const [semRede, setSemRede] = useState(false);
+    const [dadosMoveis, setDadosMoveis] = useState(false);
+    const [rede, setRede] = useState(false);
     const [bateria, setBateria] = useState();
 
     const batteryLevel = useBatteryLevel();
 
-    const {agradece, setAgradece, localiza, setLocaliza} = useContext( UserContext );
+    const { agradece, setAgradece, localiza, setLocaliza } = useContext(UserContext);
 
-    async function getStatus(){
+    async function getStatus() {
         const status = await Network.getNetworkStateAsync();
-        if(status.type == "WIFI"){
+        if (status.type == "WIFI") {
             setRede(true);
         }
-        else{
+        else {
             setRede(false);
         }
 
-        if(status.type == "CELLULAR"){
-          setDadosMoveis(true);
+        if (status.type == "CELLULAR") {
+            setDadosMoveis(true);
         }
-        else{
-          setDadosMoveis(false)
+        else {
+            setDadosMoveis(false)
         }
     }
 
-    useEffect( () => {
+    useEffect(() => {
         getStatus();
-    },[]);
+    }, []);
 
-    useEffect( () => {
+    useEffect(() => {
         getStatus();
-    },[rede, dadosMoveis]);
+    }, [rede, dadosMoveis]);
 
-    useEffect( () => {
-        setBateria( (batteryLevel * 100).toFixed(0) );
-      }, [batteryLevel] );
+    useEffect(() => {
+        setBateria((batteryLevel * 100).toFixed(0));
+    }, [batteryLevel]);
 
-    if (localiza == true){
-        return(<Localizar/>)
+
+    function ExibeLocalizacao() {
+        setLocaliza(true);
+        setAgradece( false );
     }
-    return(
+
+
+    if (localiza == true && agradece == false ) {
+        return (<Localizar />)
+    }
+
+    if(agradece == true  && localiza == false ){
+        return(<Agradecimento/>)
+    }
+
+
+    return (
         <SafeAreaView style={css.container}>
             <ScrollView style={css.scroll}>
                 <View style={css.tudo}>
@@ -63,59 +76,59 @@ export default function Pedido () {
                         </View>
                         <View style={css.atualImg}>
                             <ItemPedido
-                            desc="Frango empanado com molho de tomate e queijo, acompanhado por arroz e purê"
-                            foto="https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg"
-                            nome="Parmegiana"
-                            preco="R$ 40,00"></ItemPedido>
+                                desc="Frango empanado com molho de tomate e queijo, acompanhado por arroz e purê"
+                                foto="https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg"
+                                nome="Parmegiana"
+                                preco="R$ 40,00"></ItemPedido>
                             <ItemPedido
-                            desc='Conjunto de legumes que incluem abobrinhas, berinjelas, cebolas, tomates, pimentões, azeite, alecrim, manjericão, alho e molho de tomate'
-                            foto="https://www.receitasnestle.com.br/sites/default/files/srh_recipes/9367969f6efd0f47249a4b1c2ef9ded5.jpg"
-                            nome="Ratatouille"
-                            preco="R$ 38,00"></ItemPedido>
+                                desc='Conjunto de legumes que incluem abobrinhas, berinjelas, cebolas, tomates, pimentões, azeite, alecrim, manjericão, alho e molho de tomate'
+                                foto="https://www.receitasnestle.com.br/sites/default/files/srh_recipes/9367969f6efd0f47249a4b1c2ef9ded5.jpg"
+                                nome="Ratatouille"
+                                preco="R$ 38,00"></ItemPedido>
                         </View>
                     </View>
-                    <TouchableOpacity style={css.btn} onPress={() => {setLocaliza(true);if(agradece == false){setAgradece(true)} else{setAgradece(false)}; console.log(agradece)}}>
+                    <TouchableOpacity style={css.btn} onPress={ExibeLocalizacao}>
                         <Text style={css.btnTexto}>Localização</Text>
                     </TouchableOpacity>
-                    {bateria>15? 
-                    <View>
-                        {rede && bateria > 15 ?
-                        <View style={css.tudo2}>
-                            <View style={css.titulo}>
-                                <View style={css.linha}>
-                                    <Text style={css.tituloPT}>Pedidos anteriores</Text>
+                    {bateria > 15 ?
+                        <View>
+                            {rede && bateria > 15 ?
+                                <View style={css.tudo2}>
+                                    <View style={css.titulo}>
+                                        <View style={css.linha}>
+                                            <Text style={css.tituloPT}>Pedidos anteriores</Text>
+                                        </View>
+                                        <Text style={css.tituloFR}>Commandes précédentes</Text>
+                                    </View>
+                                    <View style={css.anteriorImg}>
+                                        <PedidoAnterior
+                                            foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
+                                            data='12/02/2024'
+                                            nome="Parmegiana"
+                                            preco="R$ 40,00"
+                                        ></PedidoAnterior>
+                                        <PedidoAnterior
+                                            foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
+                                            data='12/02/2024'
+                                            nome="Parmegiana"
+                                            preco="R$ 40,00"
+                                        ></PedidoAnterior>
+                                    </View>
                                 </View>
-                                <Text style={css.tituloFR}>Commandes précédentes</Text>
-                            </View>
-                            <View style={css.anteriorImg}>
-                                <PedidoAnterior 
-                                foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
-                                data='12/02/2024'
-                                nome="Parmegiana"
-                                preco="R$ 40,00"
-                                ></PedidoAnterior>
-                                <PedidoAnterior 
-                                foto='https://img.saborosos.com.br/imagens/bife-a-parmegiana.jpg'
-                                data='12/02/2024'
-                                nome="Parmegiana"
-                                preco="R$ 40,00"
-                                ></PedidoAnterior>
-                            </View>
+                                : <View style={css.dadosMoveis}></View>}
                         </View>
-                        : <View style={css.dadosMoveis}></View>}
-                    </View>
-                    :
-                    <View style={css.dadosMoveis}>
-                        <View style={css.bateriafraca}>
-                            <View style={css.caixaimg}>
-                                <Image style={css.bateriaimg} source={{uri:"https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/512/Red-Exclamation-Mark-Flat-icon.png",}}/>
+                        :
+                        <View style={css.dadosMoveis}>
+                            <View style={css.bateriafraca}>
+                                <View style={css.caixaimg}>
+                                    <Image style={css.bateriaimg} source={{ uri: "https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/512/Red-Exclamation-Mark-Flat-icon.png", }} />
+                                </View>
+                                <View style={css.caixatxt}>
+                                    <Text style={css.bateriatxt1}>Bateria fraca!!</Text>
+                                    <Text style={css.bateriatxt}>Você corre risco de não conseguir finalizar seu pedido</Text>
+                                </View>
                             </View>
-                            <View style={css.caixatxt}>
-                                <Text style={css.bateriatxt1}>Bateria fraca!!</Text>
-                                <Text style={css.bateriatxt}>Você corre risco de não conseguir finalizar seu pedido</Text>
-                            </View>
-                        </View>
-                    </View>}
+                        </View>}
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -124,7 +137,7 @@ export default function Pedido () {
 }
 
 const css = StyleSheet.create({
-    container:{
+    container: {
         width: '100%',
         height: '100%'
     },
@@ -146,7 +159,7 @@ const css = StyleSheet.create({
     tituloPT: {
         fontSize: 23,
         textAlign: 'center',
-        
+
     },
     tituloFR: {
         fontSize: 15,
@@ -177,62 +190,62 @@ const css = StyleSheet.create({
         color: '#FDFAFA',
         fontSize: 20,
     },
-    anteriorImg:{
-        width:'100%',
+    anteriorImg: {
+        width: '100%',
         display: 'flex',
         alignItems: 'center',
     },
-    dadosMoveis:{
+    dadosMoveis: {
         height: 300,
         backgroundColor: "#FAE0E2",
     },
-    atualImg:{
-        width:'100%',
+    atualImg: {
+        width: '100%',
         display: 'flex',
         alignItems: 'center'
     },
-    atual:{
-        width: '100%', 
-        display:'flex',
-        alignItems:'center'
+    atual: {
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center'
     },
-    bateriafraca:{
-        backgroundColor:"#F7B8BA",
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'center',
-        alignItems:'center',
+    bateriafraca: {
+        backgroundColor: "#F7B8BA",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '80%',
-        borderRadius:10,
+        borderRadius: 10,
         padding: 10
     },
-    bateriaimg:{
+    bateriaimg: {
         width: 78,
         height: 76,
     },
-    bateriatxt1:{
-        textAlign:'center',
-        fontSize:19,
-        color:'#8c0000',
-        width:'70%'
+    bateriatxt1: {
+        textAlign: 'center',
+        fontSize: 19,
+        color: '#8c0000',
+        width: '70%'
     },
     bateriatxt: {
-        textAlign:'center',
-        fontSize:15,
-        color:'#8c0000',
-        width:'70%'
+        textAlign: 'center',
+        fontSize: 15,
+        color: '#8c0000',
+        width: '70%'
     },
     caixaimg: {
-        width:'20%',
-        display:'flex',
-        justifyContent:'center',
+        width: '20%',
+        display: 'flex',
+        justifyContent: 'center',
         paddingLeft: 40
     },
-    caixatxt:{
-        width:'100%',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center'
+    caixatxt: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
-    
+
 })

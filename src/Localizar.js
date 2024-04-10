@@ -2,8 +2,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { Directions } from 'react-native-gesture-handler'
 import { UserContext } from './Context/UserContext';
-import Agradecimento from './Agradecimento';
-import Pedido from './Pedido';
 
 export default function Localizar() {
     const [ cor, setCor ] = useState('#fff');
@@ -19,17 +17,12 @@ export default function Localizar() {
 
     const{ setPedido, pedido, setLocaliza, agradece, setAgradece } = useContext ( UserContext );
 
-    if(agradece == true && pedido == false){
-
-        return(<Agradecimento/>)
-        
-    }
 
   return (
     
 
         <View style={css.Todo}>
-            <TouchableOpacity style={css.volta}  onPress={() => setLocaliza(false)}>
+            <TouchableOpacity style={css.volta}  onPress={() => setLocaliza( false )}>
                 <Text style={css.voltaTxt}>❮</Text>
             </TouchableOpacity>
             <View style={css.CampPesqui}>
@@ -72,7 +65,7 @@ export default function Localizar() {
                     <Text style={css.cartao}>Pagar via cartão</Text>
                 </View>
             </View>
-            <TouchableOpacity style={css.Botao} onPress={() => {setAgradece(true); setPedido(false); console.log(agradece);}}>
+            <TouchableOpacity style={css.Botao} onPress={ () => { setAgradece( true ); setLocaliza( false ); } }>
                 <Text style={css.btntexto}>Finalizar Pedido</Text>
             </TouchableOpacity>
         </View>

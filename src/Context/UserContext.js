@@ -5,7 +5,7 @@ export const UserContext = createContext();
 function UserProvider({children}) {
     const [ usuario, setUsuario ]= useState(null);
     const [ logado, setLogado ]= useState(false);
-    const [ localiza, setLocaliza ]= useState(false)
+    const [ localiza, setLocaliza ]= useState(false);
     const [ cadastro, setCadastro ] = useState(false);
     const [ esqueciSenha, setEsqueciSenha] = useState(false);
     const [ agradece, setAgradece] = useState(false);
@@ -33,13 +33,13 @@ function UserProvider({children}) {
        
     }
     /*function mudaTela(){
+        console.log(pedido, localiza, agradece)
         if(pedido == true){
             if(agradece == false) {
                 setLocaliza(true);
                 if(localiza == true){
                     setAgradece(false);
                     setPedido(false);
-                    console.log(pedido, localiza, agradece)
                 }
             }
         }
@@ -49,7 +49,6 @@ function UserProvider({children}) {
                 if(agradece == true){
                     setLocaliza(false);
                     setPedido(false);
-                    console.log(pedido, localiza, agradece)
                 }
             }
         }
@@ -59,7 +58,6 @@ function UserProvider({children}) {
                 if(pedido == true){
                     setLocaliza(false);
                     setAgradece(false);
-                    console.log(pedido, localiza, agradece)
                 }
             }
         }

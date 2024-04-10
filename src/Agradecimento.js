@@ -1,16 +1,12 @@
 import { Button, Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { UserContext } from "./Context/UserContext";
 import { useContext } from "react";
-import Pedido from "./Pedido";
 
 
 export default function Agradecimento({navigation})
 {   
-    const {pedido, setPedido, localiza, setLocaliza } = useContext(UserContext);
+    const {pedido, setPedido, localiza, setLocaliza, setAgradece } = useContext(UserContext);
 
-    if(pedido== true && localiza == false ){
-        return(<Pedido/>)
-    }
     return(
         <View style={css.Todo}>
             <TouchableOpacity style={css.volta}>
@@ -28,7 +24,7 @@ export default function Agradecimento({navigation})
             <Text style={css.AgradecimentoFR}>Commande terminée avec succès</Text>
             
             
-            <TouchableOpacity style={css.BotaoVoltar} onPress={() => {setPedido(true), setLocaliza(false)}}>
+            <TouchableOpacity style={css.BotaoVoltar} onPress={() => { setAgradece( false ); setLocaliza( false ); } }>
                 <Text style={css.btntexto}>Voltar para pagina inicial</Text>
             </TouchableOpacity>
             
