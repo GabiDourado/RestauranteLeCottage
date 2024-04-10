@@ -32,37 +32,6 @@ function UserProvider({children}) {
 
        
     }
-    /*function mudaTela(){
-        console.log(pedido, localiza, agradece)
-        if(pedido == true){
-            if(agradece == false) {
-                setLocaliza(true);
-                if(localiza == true){
-                    setAgradece(false);
-                    setPedido(false);
-                }
-            }
-        }
-        if(localiza == true){
-            if(pedido == false){
-                setAgradece(true);
-                if(agradece == true){
-                    setLocaliza(false);
-                    setPedido(false);
-                }
-            }
-        }
-        if(agradece == true){
-            if(localiza == false) {
-                setPedido(true);
-                if(pedido == true){
-                    setLocaliza(false);
-                    setAgradece(false);
-                }
-            }
-        }
-    }*/
-    
 
     useEffect(()=>{
         InfoUsuario()
